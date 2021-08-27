@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import World from './components/world/World.vue'
+import World from './components/World.vue'
 
 export default {
   name: 'App',
