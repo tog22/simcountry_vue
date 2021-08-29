@@ -10,7 +10,6 @@
 					<img src="graphics/nature/tree.png">
 					<img src="graphics/nature/tree.png">
 				</div>
-				{{clog(building_ids)}}
 				<div class="building_container" v-for="building_id in building_ids" :key={building_id}>
 					<Building :id="building_id" />
 				</div>
@@ -44,7 +43,7 @@
 			this.building_ids = this.building_ids.concat(building_ids);
 		}, 
 		methods: {
-			clog(to_log) {
+			log(to_log) {
 				console.log('___ Manual console log ___')
 				console.log(to_log);
 			}
