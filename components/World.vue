@@ -3,7 +3,7 @@
 </template>
 
 <script>
-	import World_Viewer from './ui/World_Viewer.vue'
+	import World_Viewer from './World_Viewer.vue'
 	
 	import Locale from '../model/Locale.js'
 	import Building from '../model/Building.js'
