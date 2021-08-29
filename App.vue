@@ -3,6 +3,9 @@
 </template>
 
 <script>
+import '@/assets/ui.css';
+import '@/assets/map.css';
+
 import World from './components/World.vue'
 
 export default {

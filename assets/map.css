@@ -1,0 +1,34 @@
+.locale {
+	display: table;
+}
+
+.t {
+	display: table-cell;
+	vertical-align: top;
+	height: 144px;
+}
+
+.forest img {
+	height: 83px;
+}
+
+.lumber_mill img {
+	height: 78px;
+	padding-top: 25px;
+}
+
+.temp {
+}
+
+.temp .locale {
+	padding: 20px 40px;
+}
+
+.grassland {
+	background-color:#4fa953;
+}
+
+.farm img {
+	width: 112px;
+	padding-top: 2px;
+}
