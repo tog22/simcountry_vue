@@ -1,5 +1,5 @@
 <template>
-	<Locale/>
+	<Locale :locale="locale" />
 </template>
 
 <script>
@@ -7,6 +7,12 @@
 	
 	export default {
 		name: 'World_Viewer',
+		props: {
+			locale: {
+				required: true,
+				type: Number
+			}
+		},
 		components: {
 			Locale
 		}

@@ -1,5 +1,5 @@
 <template>
-	<World_Viewer/>
+	<World_Viewer :locale="0"/>
 </template>
 
 <script>

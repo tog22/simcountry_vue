@@ -2,7 +2,6 @@
 	<div id="visual">
 		<div class="temp">
 			<div class="locale grassland" id="v0">
-			
 				<div class="resources forest t">
 					<img src="graphics/nature/tree.png">
 					<img src="graphics/nature/tree.png">
@@ -24,6 +23,12 @@
 <script>
 export default {
 	name: 'Locale',
+	props: {
+		locale: {
+			required: true,
+			type: Number
+		}
+	},
 	components: {
 	}
 }
