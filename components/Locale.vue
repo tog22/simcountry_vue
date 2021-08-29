@@ -29,6 +29,8 @@ export default {
 			type: Number
 		}
 	},
+	mounted() {
+	},
 	components: {
 	}
 }

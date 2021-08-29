@@ -1,5 +1,6 @@
 <template>
 	<World_Viewer :locale="0"/>
+	{{names.people.m[0]}}
 </template>
 
 <script>

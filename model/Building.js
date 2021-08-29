@@ -12,8 +12,11 @@ export default class Building {
 		w.next++;
 		w.c++;
 		
-		this.parent_locale = parent_locale;
 		this.type = type;
+		
+		this.parent_locale = parent_locale;
+		w.objects[parent_locale].children.push(this.oid);
+		
 	}
 	
 	/*

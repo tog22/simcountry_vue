@@ -1,6 +1,7 @@
 export default class Locale {
 	oid
 	custom_name
+	children = []
 	resources = {}
 	aspects = {}
 	buildings = []
