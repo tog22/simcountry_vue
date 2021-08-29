@@ -1,6 +1,6 @@
 <template>
 	<World_Viewer :locale="0"/>
-	{{names.people.m[0]}}
+	{{objects[cll].custom_name}}
 </template>
 
 <script>
@@ -41,7 +41,7 @@
 				}
 			}
 		},
-		mounted() {
+		created() {
 			
 			// Create a way to refer to the world everywhere without passing it into functions
 			

@@ -10,28 +10,33 @@
 					<img src="graphics/nature/tree.png">
 					<img src="graphics/nature/tree.png">
 				</div>
-				
-				<div class="biz lumber_mill t" id="v1">
-					<img src="graphics/Buildings/SawMill.png">
-				</div>
-				
+				<Building />
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-export default {
-	name: 'Locale',
-	props: {
-		locale: {
-			required: true,
-			type: Number
+	import Building from './Building.vue'
+
+	export default {
+		name: 'Locale',
+		components: {
+			Building
+		},
+		props: {
+			locale: {
+				required: true,
+				type: Number
+			}
+		},
+		mounted() {
+			let w = this.$parent.$parent;
+			const building_ids = w.objects[this.locale].children;
+			for (const building_id of building_ids) {
+				let building = w.objects[building_id];
+				console.log(building)
+			}
 		}
-	},
-	mounted() {
-	},
-	components: {
 	}
-}
 </script>
