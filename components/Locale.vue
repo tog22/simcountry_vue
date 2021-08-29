@@ -10,7 +10,10 @@
 					<img src="graphics/nature/tree.png">
 					<img src="graphics/nature/tree.png">
 				</div>
-				<Building />
+				{{clog(building_ids)}}
+				<div class="building_container" v-for="building_id in building_ids" :key={building_id}>
+					<Building :id="building_id" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -30,12 +33,20 @@
 				type: Number
 			}
 		},
-		mounted() {
+		data() {
+			return {
+				building_ids: []
+			}
+		},
+		created() {
 			let w = this.$parent.$parent;
 			const building_ids = w.objects[this.locale].children;
-			for (const building_id of building_ids) {
-				let building = w.objects[building_id];
-				console.log(building)
+			this.building_ids = this.building_ids.concat(building_ids);
+		}, 
+		methods: {
+			clog(to_log) {
+				console.log('___ Manual console log ___')
+				console.log(to_log);
 			}
 		}
 	}
