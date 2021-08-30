@@ -127,6 +127,8 @@ body {
 }
 
 .control .dropdown {
+	display: none;
+	
 	position: absolute;
 	top: 33px;
 	left: -0.8em;
