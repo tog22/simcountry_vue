@@ -33,31 +33,11 @@
 			<span class="label">
 				Add
 			</span>
-		</div>	
-		<div class="dummy_control control w_dropdown">
-			<dropdown-menu
-			v-model="show"
-			:right="right"
-			:hover="hover"
-			:interactive="interactive"
-			>
-				<button class="btn btn-primary dropdown-toggle">
-					Click to open dropdown
-				</button>
-				<div slot="dropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			</dropdown-menu>	
-		</div>
+		</div>		
 	</div>
 </template>
 
 <script>
-	import DropdownMenu from '@innologica/vue-dropdown-menu'
-
-	
 	export default {
 		name: 'Control_Bar',
 		components: {
