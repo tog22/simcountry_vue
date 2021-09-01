@@ -2,9 +2,6 @@
 	<div class="biz lumber_mill t" id="v1">
 		<img src="graphics/Buildings/SawMill.png">
 	</div>
-	<p>
-		Joseph's Lumber Mill
-	</p>
 </template>
 
 <script>
