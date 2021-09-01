@@ -34,34 +34,57 @@
 				Add
 			</span>
 		</div>
-		hi
-		<div class="dummy_control control w_dropdown">
-			<dropdown-menu
-			v-model="show"
-			:right="right"
-			:hover="hover"
-			:interactive="interactive"
-			>
-				<button class="btn btn-primary dropdown-toggle">
-					Click to open dropdown
-				</button>
-				<div slot="dropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-				</div>
-			</dropdown-menu>	
-		</div>
+		<v-menu-multi-level :nodes="menus"></v-menu-multi-level>
 	</div>
 </template>
 
 <script>
-	import DropdownMenu from '@innologica/vue-dropdown-menu'
+	import VMenuMultiLevel from 'v-menu-multi-level'
+	import 'v-menu-multi-level/dist/v-menu-multi-level.css'
 	
 	export default {
 		name: 'Control_Bar',
 		components: {
-			DropdownMenu
+			VMenuMultiLevel
+		},
+		data() {
+			return {
+			  menus: [
+				{
+				  label: 'Add',
+				  visible: true,
+				  children: [
+					{
+					label: 'Lumber Mill',
+					children: []
+				    },
+					{
+					label: 'Farm',
+					children: []
+					}
+			  	  ]
+				  // . . .
+				}
+				/*
+				,
+			    {
+				  label: 'Menu 2',
+				  visible: true,
+				  children: [
+					{
+					label: 'Item 1',
+					children: []
+					},
+					{
+					label: 'Item 2',
+					children: []
+					}
+					]
+				  // . . .
+				}
+				*/
+			  ]
+			}
 		}
 	}
 </script>
