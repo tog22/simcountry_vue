@@ -1,7 +1,9 @@
 <template>
-	<Control_Bar/>
-	<World/>
-	<Info_Zone/>
+	<div id="window">
+		<Control_Bar/>
+		<World/>
+		<Info_Zone/>
+	</div>
 </template>
 
 <script>

@@ -42,7 +42,7 @@ html, body {
 	flex-direction: column;
 }
 
-body > #app {
+body > #window {
 	flex-shrink: 0;
 	flex-grow: 1;
 }
@@ -61,7 +61,7 @@ body > #app {
 *******************
 ******************/
 
-#app {
+#window {
 	display: flex;
 	flex-direction: column;
 }
