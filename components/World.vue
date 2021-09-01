@@ -1,6 +1,5 @@
 <template>
 	<World_Viewer :locale="0"/>
-	{{objects[cll].custom_name}}
 </template>
 
 <script>
