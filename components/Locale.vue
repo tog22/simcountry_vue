@@ -43,7 +43,22 @@
 		created() {
 			let w = this.$parent.$parent;
 			const building_ids = w.objects[this.locale].children;
-			this.building_ids = this.building_ids.concat(building_ids);
+			this.building_ids = building_ids; // or = this.building_ids.concat(building_ids);
+			
+			/*
+			let array1 = [1,2];
+			
+			
+			let w = this.$parent.$parent;
+			const building_ids_src = w.objects[this.locale].children;
+			this.building_ids = building_ids_src;
+			console.log("array1 = ");
+			console.log(array1);
+			console.log("const building_ids_src =");
+			console.log(building_ids_src);
+			console.log("this.bi = ");
+			console.log(this.building_ids);
+			*/
 		}, 
 		methods: {
 			log(to_log) {
