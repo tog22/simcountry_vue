@@ -92,6 +92,20 @@ body > #window {
 	border-bottom: 1px solid white;
 }
 
+/* !•• DROPDOWN MENUS */
+
+#menus_mml #v-menu-multi-level {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-text  {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-menu-open-down .dropdown-text  {
+	background: rgb(76, 93, 108) !important;
+}
+
 /**************
 ***************
 **			 **

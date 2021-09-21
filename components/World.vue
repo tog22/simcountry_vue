@@ -9,6 +9,8 @@
 	import Building from '../model/Building.js'
 	import Building_Type from '../model/Building_Type.js'
 	
+	import { bus } from '../main'
+	
 	export default {
 		name: 'World',
 		components: {
@@ -42,6 +44,14 @@
 		},
 		created() {
 			
+			/**************************
+			***************************
+			**						 **
+			**  LOAD STARTING WORLD  **
+			**						 **
+			***************************
+			**************************/
+			
 			// Create a way to refer to the world everywhere without passing it into functions
 			
 			window.world = this;
@@ -73,6 +83,27 @@
 			w.objects[w.next] = new Building(w.cll,'lumber_mill');
 			w.objects[w.cll].buildings.push(w.c);
 			w.objects[w.c].custom_name = "Joseph's Lumber Mill";
+			
+			/*************************
+			**************************
+			**						**
+			**  ADD MENU FUNCTIONS  **
+			**						**
+			**************************
+			*************************/
+			
+			bus.$on(
+				'add',
+				(data) => {
+				  console.log(data);
+				}
+			);
+		}, 
+		methods: {
+			log(to_log) {
+				console.log('___ Manual console log ___')
+				console.log(to_log);
+			}
 		}
 	}
 </script>

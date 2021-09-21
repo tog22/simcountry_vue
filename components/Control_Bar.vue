@@ -34,7 +34,10 @@
 				Add
 			</span>
 		</div>
-		<v-menu-multi-level :nodes="menus"></v-menu-multi-level>
+		<div id="menus_mml">
+			<v-menu-multi-level :nodes="menus" @click-item="menu_item_clicked">
+			</v-menu-multi-level>
+		</div>
 	</div>
 </template>
 
@@ -42,10 +45,24 @@
 	import VMenuMultiLevel from 'v-menu-multi-level'
 	import 'v-menu-multi-level/dist/v-menu-multi-level.css'
 	
+	import { bus } from '../main'
+	
 	export default {
 		name: 'Control_Bar',
 		components: {
 			VMenuMultiLevel
+		},
+		methods: {
+			menu_item_clicked(event,data) {
+				switch (data.label) {
+					case 'Lumber Mill':
+						bus.$emit('add', 'lumber_mill');
+						break;
+					case 'Farm':
+						bus.$emit('add', 'farm');
+						break;
+				}
+			}	
 		},
 		data() {
 			return {
@@ -90,5 +107,9 @@
 </script>
 
 <style>
-
+	#menus_mml,
+	#menus_mml #v-menu-multi-level.container {
+		display: inline-block !important;
+		/* Other styles in ui.css */
+	}
 </style>
