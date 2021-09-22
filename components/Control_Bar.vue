@@ -58,8 +58,10 @@
 			menu_item_clicked(event,data) {
 				switch (data.label) {
 					case 'Lumber Mill':
-						//bus.$emit('add', 'lumber_mill');
+						// bus.$emit('add', 'lumber_mill_emitted');
+						
 						bldgs.add('lumber_mill', 0);
+						// ↑ TO DO: Change 0 in bldgs.add() from being hardcorded to being w.cvl, once I make the Currently Visible Locale get set 
 						break;
 					case 'Farm':
 						break;

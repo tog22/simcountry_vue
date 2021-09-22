@@ -6,6 +6,8 @@
 // 	} 
 // }
 
+import Building from '../model/Building.js'
+	
 var bldgs = (function() {
 	let publicly_returned_bits = {};
 	let private_bits = {};
@@ -13,6 +15,9 @@ var bldgs = (function() {
 	
 	publicly_returned_bits.add = function(building_type, locale) {
 		console.log(building_type);
+		
+		w.objects[w.next] = new Building(locale,building_type);
+		w.objects[locale].buildings.push(w.latest);
 	}
 	
 	return publicly_returned_bits;

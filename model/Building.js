@@ -10,7 +10,7 @@ export default class Building {
 		let w = window.world;
 		this.oid = w.next;
 		w.next++;
-		w.c++;
+		w.latest++;
 		
 		this.type = type;
 		

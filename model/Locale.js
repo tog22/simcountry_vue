@@ -11,7 +11,7 @@ export default class Locale {
 		let w = window.world;
 		this.oid = w.next;
 		w.next++;
-		w.c++;
+		w.latest++;
 	}
 	
 	// constructor()
