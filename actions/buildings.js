@@ -1,4 +1,5 @@
-//
+// The below doesn't work, use the variable returned by the self-expressing function below instead:
+// 
 // export default class {
 // 	add(building_type, locale) {
 // 		console.log(building_type);
