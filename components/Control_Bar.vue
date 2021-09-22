@@ -62,6 +62,7 @@
 						
 						bldgs.add('lumber_mill', 0);
 						// ↑ TO DO: Change 0 in bldgs.add() from being hardcorded to being w.cvl, once I make the Currently Visible Locale get set 
+						alert('end')
 						break;
 					case 'Farm':
 						break;

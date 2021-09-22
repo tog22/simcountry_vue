@@ -9,6 +9,7 @@
 import Building from '../model/Building.js'
 	
 var bldgs = (function() {
+	alert(1);
 	let publicly_returned_bits = {};
 	let private_bits = {};
 	let w = window.world;
@@ -16,7 +17,7 @@ var bldgs = (function() {
 	publicly_returned_bits.add = function(building_type, locale) {
 		console.log(building_type);
 		
-		w.objects[w.next] = new Building(locale,building_type);
+		w.objects[w.next] = new Building(locale, building_type);
 		w.objects[locale].buildings.push(w.latest);
 	}
 	
