@@ -47,6 +47,8 @@
 	
 	import { bus } from '../main'
 	
+	import bldgs from '../actions/buildings.js'
+	
 	export default {
 		name: 'Control_Bar',
 		components: {
@@ -56,10 +58,10 @@
 			menu_item_clicked(event,data) {
 				switch (data.label) {
 					case 'Lumber Mill':
-						bus.$emit('add', 'lumber_mill');
+						//bus.$emit('add', 'lumber_mill');
+						bldgs.add('lumber_mill', 0);
 						break;
 					case 'Farm':
-						bus.$emit('add', 'farm');
 						break;
 				}
 			}	
