@@ -9,7 +9,6 @@
 import Building from '../model/Building.js'
 	
 var bldgs = (function() {
-	alert(1);
 	let publicly_returned_bits = {};
 	let private_bits = {};
 	let w = window.world;

@@ -90,20 +90,16 @@ body > #window {
 	background: #7c98b3;
 	padding: 4px 20px;
 	border-bottom: 1px solid white;
+	
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-/* !•• DROPDOWN MENUS */
+/* !•• INFO ZONE */
 
-#menus_mml #v-menu-multi-level {
-	background: transparent !important;
-}
-
-#menus_mml #v-menu-multi-level .dropdown-text  {
-	background: transparent !important;
-}
-
-#menus_mml #v-menu-multi-level .dropdown-menu-open-down .dropdown-text  {
-	background: rgb(76, 93, 108) !important;
+#control_bar .s_info {
+	padding-top: 5px;
 }
 
 /**************
@@ -113,6 +109,8 @@ body > #window {
 **			 **
 ***************
 **************/
+
+/* !•• BUTTONS */
 
 .control {
 	display: inline-block;
@@ -163,12 +161,28 @@ body > #window {
 
 #control_bar .label {
 	position: relative;
-	bottom: 1px;
+	bottom: 3px;
 	padding-left: 0.5em;
 }
 
 #timer {
 	display: inline-block;
+}
+
+
+
+/* !•• DROPDOWN MENUS (VMENU) */
+
+#menus_mml #v-menu-multi-level {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-text  {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-menu-open-down .dropdown-text  {
+	background: rgb(76, 93, 108) !important;
 }
 
 /* !•• DROPDOWNS */
