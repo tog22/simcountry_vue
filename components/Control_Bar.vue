@@ -1,10 +1,11 @@
 <template>
 	<div id="control_bar">
 		<div class="s_info">
+			<simm></simm>
 			Murwood Forest
 		</div>
 		<div class="controls">
-			<div class="time_control control first">
+			<div class="time_control control first" @click="play_or_pause">
 				<span id="play_pause" class="btn">
 					▶️ <!-- ⏸ -->
 				</span>
@@ -57,15 +58,22 @@
 	import Building from '../model/Building.js'
 	
 	import { bus } from '../main'
+	import simm from './Sim_Meta.vue'
 	
 	import bldgs from '../actions/buildings.js'
 	
 	export default {
 		name: 'Control_Bar',
 		components: {
-			//VMenuMultiLevel
+			//VMenuMultiLevel,
+			simm
 		},
 		methods: {
+			play_or_pause() {
+				simm.running = true;
+				simm.test = 'altered'
+				//bus.$emit('play_or_pause', 'lumber_mill_emitted');
+			},
 			test_add_lm() {
 				let w = window.world
 				w.objects[w.next] = new Building(0, 'lumber_mill');

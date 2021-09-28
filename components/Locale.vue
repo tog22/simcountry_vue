@@ -18,7 +18,7 @@
 						<Building :id="building_id" />
 					</div>
 					<div class="rhs t">
-						<!-- Sprare space on the right hand side -->
+						<!-- Spare space on the right hand side -->
 					</div>
 				</div>
 			</div>
