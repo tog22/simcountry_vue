@@ -1,5 +1,5 @@
 <template>
-	<Locale :locale="locale" />
+	<Locale :locale_id="locale" />
 </template>
 
 <script>

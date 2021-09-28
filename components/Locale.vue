@@ -30,7 +30,7 @@
 				</h2>
 				<div class="s_content">
 					<p>
-						🌲 Ample 
+						🌲 {{locale.resources['trees']}} 
 					</p>
 				</div>
 			</div>
@@ -47,20 +47,27 @@
 			Building
 		},
 		props: {
-			locale: {
+			locale_id: {
 				required: true,
 				type: Number
 			}
 		},
 		data() {
+			let w = this.$parent.$parent;
+			
 			return {
-				building_ids: []
+				building_ids: [],
+				locale: w.objects[this.locale_id]
 			}
 		},
 		created() {
 			let w = this.$parent.$parent;
-			const building_ids = w.objects[this.locale].children;
+			let locale_c = w.objects[this.locale_id];
+			
+			const building_ids = locale_c.children;
 			this.building_ids = building_ids; // or = this.building_ids.concat(building_ids);
+			
+			
 			
 			/*
 			let array1 = [1,2];
@@ -103,12 +110,18 @@
 	}
 	
 	.window {
-		border: 4px solid black;
-		padding: 0.5em 2em;
+		border: 4px solid #eee;
+		border-radius: 4px;
+		padding: 0.5em 1.3em 1.2em;
+		max-width: 400px;
+		color: #eee;
 	}
 	
 	.window h2 {
 		text-transform: uppercase;
-		font-size: 1em;
+		font-weight: bold;
+		font-size: 0.8em;
+		letter-spacing: 0.05em;
+		margin-top: 0.4em;
 	}
 </style>

@@ -80,7 +80,8 @@ body > #window {
 *******************
 ******************/
 
-/* !• CONTROL BAR */
+/* !••••••••••••••••••••••••••••*/
+/* !• CONTROL BAR 				*/
 
 #control_bar {
 	/* Module rem size */
@@ -215,7 +216,15 @@ body > #window {
 	border-bottom: none;
 }
 
-/* !• Info boxes */
+/* !••••••••••••••••••••••••••••*/
+/* !• INFO ZONE					*/
+
+#shown_locale_info {
+	/* Module rem size */
+	font-size: 1rem;
+}
+
+/* !•• INFO BOXES (OLD) */
 
 #object_details {
 	margin: 2em 1em;
