@@ -1,20 +1,37 @@
 <template>
-	<div id="visual">
-		<div class="temp">
-			<div class="locale grassland" id="v0">
-				<div class="resources forest t">
-					<img src="graphics/nature/tree.png">
-					<img src="graphics/nature/tree.png">
-					<img src="graphics/nature/tree.png">
-					<img src="graphics/nature/tree.png">
-					<img src="graphics/nature/tree.png">
-					<img src="graphics/nature/tree.png">
+	<div id="locale_shown">
+		<div id="visual">
+			<div class="temp">
+				<div class="locale grassland" id="v0">
+					<div class="resources forest t">
+						<img src="graphics/nature/tree.png">
+						<img src="graphics/nature/tree.png">
+						<img src="graphics/nature/tree.png">
+						<img src="graphics/nature/tree.png">
+						<img src="graphics/nature/tree.png">
+						<img src="graphics/nature/tree.png">
+					</div>
+					<div class="building_container t" v-for="building_id in building_ids" :key={building_id}>
+						<!-- ↑ TODO: Change key to fix this error:
+							"Avoid using non-primitive value as key, use string/number value instead."
+						-->
+						<Building :id="building_id" />
+					</div>
+					<div class="rhs t">
+						<!-- Sprare space on the right hand side -->
+					</div>
 				</div>
-				<div class="building_container t" v-for="building_id in building_ids" :key={building_id}>
-					<Building :id="building_id" />
-				</div>
-				<div class="rhs t">
-					<!-- Sprare space on the right hand side -->
+			</div>
+		</div>
+		<div id="shown_locale_info">
+			<div class="window">
+				<h2>
+					Resources 
+				</h2>
+				<div class="s_content">
+					<p>
+						🌲 Ample 
+					</p>
 				</div>
 			</div>
 		</div>
@@ -68,3 +85,30 @@
 		}
 	}
 </script>
+
+<style>
+	#locale_shown {
+		flex-grow: 1;
+		
+		display: flex;
+		flex-direction: column;
+	}
+	
+	#shown_locale_info {
+		flex-grow: 1;
+		
+		border-top: 1px solid white;
+		background: #7c98b3;
+		padding: 20px; /* TODO: turn into a var for leftmost content, including the control bar too */
+	}
+	
+	.window {
+		border: 4px solid black;
+		padding: 0.5em 2em;
+	}
+	
+	.window h2 {
+		text-transform: uppercase;
+		font-size: 1em;
+	}
+</style>
