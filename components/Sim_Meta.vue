@@ -1,14 +1,15 @@
 <template>
 	<div id="sim_meta_debug" class="window">
-		<p>test = {{test}}</p>
-		<p>computed test = {{test_computed}}</p>
+		<p>Test = {{test}}</p>
+		<p>Test (computed) = {{test_computed}}</p>
 		<p @click="update_state">UPDATE STATE</P>
 		<p @click="alert_vals">SHOW STATE</p>
+		<p>Running = {{running}}</p>
 	</div>
 </template>
 
 <script>
-import state from '../supplements/store.js'
+import ds from '../supplements/store.js'
 
 export default {
 	name: 'simm',
@@ -20,23 +21,26 @@ export default {
 	},
 	computed: {
 		test_computed: function() {
-			return state.test
+			return ds.test
+		},
+		running: function() {
+			return ds.meta.running
 		}
 	},
 	created() {
-		this.test = state.test
+		this.test = ds.test
 	},
 	updated() {
-		this.test = state.test 
+		this.test = ds.test 
 		// This works, but only because the computed property's change triggers updated()
 	},
 	methods: {
 		alert_vals() {
-			let show = "State's version of test: "+state.test+"\n\nSim_Meta component's version of test:"+this.test;
+			let show = "State's version of test: "+ds.test+"\n\nSim_Meta component's version of test:"+this.test;
 			alert(show) 
 		},
 		update_state() {
-			state.test = "Updated state val"
+			ds.test = "Updated state val"
 		}
 	}
 }

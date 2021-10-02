@@ -7,19 +7,26 @@
 
 import Vue from 'vue';
 
-const state = new Vue({
-  data () {
-	return {
-	  test: "state's init val"
-	}
-  },
+const ds = 
+new Vue({
+	data () {
+		return {
+			test: "Initial value for the data store's test property",
+			meta: {
+				running: false
+			}
+		}
+	},
 });
 
 export default state;
-	 
-// Method from another tute, not used:
-//
-// export default Vue.observable({
-// 	running: false,
-// 	test: 'initial string'
-// });
+
+
+/* Method from another tutorial, not used:
+
+export default Vue.observable({
+	running: false,
+	test: 'initial string'
+});
+
+*/
