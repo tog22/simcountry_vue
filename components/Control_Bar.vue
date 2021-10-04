@@ -69,7 +69,6 @@
 		computed: {
 			play_pause_icon: function() {
 				if (!ds.meta.running) {
-					console.log(w)
 					return '▶️'
 				} else {
 					return '⏸'
