@@ -49,16 +49,15 @@
 </template>
 
 <script>
-	let w = window.world
+	import w from '../model/World.js'
 	import ds from '../aspects/store.js'
-
+	
 	// import VMenuMultiLevel from 'v-menu-multi-level'
 	// import 'v-menu-multi-level/dist/v-menu-multi-level.css'
 	
 	import Building from '../model/Building.js'
 	
 	import { bus } from '../main'
-	import simm from './Sim_Meta.vue'
 	
 	import bldgs from '../actions/buildings.js'
 	
@@ -85,12 +84,10 @@
 				ds.meta.running = !ds.meta.running;
 			},
 			test_add_lm() {
-				let w = window.world
 				w.objects[w.next] = new Building(0, 'lumber_mill');
 				w.objects[0].buildings.push(w.latest);
 			},
 			menu_item_clicked(event,data) {
-				let w = window.world
 				
 				switch (data.label) {
 					case 'Lumber Mill':

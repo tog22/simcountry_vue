@@ -10,6 +10,8 @@
 	import '@/graphics/ui.css';
 	import '@/graphics/map.css';
 	
+	import w from './model/World.js'
+	
 	import Control_Bar from './components/Control_Bar.vue'
 	import World_Viewer from './components/World_Viewer.vue'
 	import Info_Zone from './components/Info_Zone.vue'
@@ -25,34 +27,6 @@
 			Control_Bar,
 			Info_Zone
 		},
-		data() {
-			return {
-				objects: [
-					// Locales, buildings et al get loaded here
-				],
-				btypes: {
-					// Building types go here
-				},
-				next: 0,	// Next object id
-				latest: -1,		// Latest object id
-				cll: null,	// Currently loading locale
-				cvl: null,	// Current visible locale
-				day: 1,
-				names: {
-					people: {
-						m: [
-							'Joseph',
-							'Joe',
-							'Frank',
-							'Stewart',
-							'Frederick',
-							'Andrew',
-							'The Donk'
-						]
-					}
-				}
-			}
-		},
 		created() {
 			
 			/**************************
@@ -62,11 +36,6 @@
 			**						 **
 			***************************
 			**************************/
-			
-			// Create a way to refer to the world everywhere without passing it into functions
-			
-			window.world = this;
-			let w = this;
 			
 			// Create a locale
 			

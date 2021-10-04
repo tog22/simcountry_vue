@@ -39,6 +39,8 @@
 </template>
 
 <script>
+	import w from '../model/World.js'
+	
 	import Building from './Building.vue'
 
 	export default {
@@ -53,15 +55,12 @@
 			}
 		},
 		data() {
-			let w = this.$parent.$parent;
-			
 			return {
 				building_ids: [],
 				locale: w.objects[this.locale_id]
 			}
 		},
 		created() {
-			let w = this.$parent.$parent;
 			let locale_c = w.objects[this.locale_id];
 			
 			const building_ids = locale_c.children;

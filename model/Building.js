@@ -1,3 +1,5 @@
+import w from '../model/World.js'
+
 export default class Building {
 	oid
 	parent_locale
@@ -7,7 +9,6 @@ export default class Building {
 	
 	constructor(parent_locale, type)
 	{
-		let w = window.world;
 		this.oid = w.next;
 		w.next++;
 		w.latest++;

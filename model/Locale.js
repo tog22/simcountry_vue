@@ -1,3 +1,5 @@
+import w from '../model/World.js'
+
 export default class Locale {
 	oid
 	custom_name
@@ -8,7 +10,6 @@ export default class Locale {
 	dwellings = []
 	
 	constructor() { 
-		let w = window.world;
 		this.oid = w.next;
 		w.next++;
 		w.latest++;

@@ -1,3 +1,5 @@
+import w from '../model/World.js'
+
 export default class Building_Type {
 	name
 	inputs = []
