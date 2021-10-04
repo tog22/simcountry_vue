@@ -10,7 +10,7 @@
 				</span>
 				<span class="label">
 					<span id="timer">
-						Day 
+						Day {{day}}
 					</span>
 				</span>
 			</div>
