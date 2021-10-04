@@ -16,7 +16,7 @@ export default {
 	name: 'Building_Info',
 	props: {
 		id: {
-			required: true,
+			required: false,
 			type: Number
 		}
 	},

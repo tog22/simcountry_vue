@@ -7,13 +7,17 @@
 <script>
 	import Building_Info from './Info_Zone/Building'
 	
+	import Vue from 'vue'
 	import { bus } from '../main'
 	
 	export default {
 		name: 'Info_Zone',
 		created (){
 			bus.$on('iz', (e) => {
-				console.log(e)
+				var Building_Info_Class = Vue.extend(Building_Info)
+				var bulding_info_instance = new Building_Info_Class()
+				bulding_info_instance.$mount()
+				this.$el.appendChild(bulding_info_instance.$el)
 			})
 		},
 		components: {
