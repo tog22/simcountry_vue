@@ -1,13 +1,12 @@
 <template>
 	<div id="control_bar">
 		<div class="s_info">
-			<simm></simm>
 			Murwood Forest
 		</div>
 		<div class="controls">
 			<div class="time_control control first" @click="play_or_pause">
 				<span id="play_pause" class="btn">
-					▶️ <!-- ⏸ -->
+					<span v-html="play_pause_icon"></span>
 				</span>
 				<span class="label">
 					<span id="timer">
@@ -51,7 +50,8 @@
 
 <script>
 	let w = window.world
-	
+	import ds from '../supplements/store.js'
+
 	// import VMenuMultiLevel from 'v-menu-multi-level'
 	// import 'v-menu-multi-level/dist/v-menu-multi-level.css'
 	
@@ -65,14 +65,20 @@
 	export default {
 		name: 'Control_Bar',
 		components: {
-			//VMenuMultiLevel,
-			simm
+			
+		},
+		computed: {
+			play_pause_icon: function() {
+				if (!ds.meta.running) {
+					return '▶️'
+				} else {
+					return '⏸'
+				}
+			}
 		},
 		methods: {
 			play_or_pause() {
-				simm.running = true;
-				simm.test = 'altered'
-				//bus.$emit('play_or_pause', 'lumber_mill_emitted');
+				ds.meta.running = !ds.meta.running;
 			},
 			test_add_lm() {
 				let w = window.world

@@ -15,7 +15,6 @@ export default {
 	name: 'simm',
 	data() {
 		return {
-			running: false,
 			test: 'pre-loading state'
 		}
 	},
@@ -36,7 +35,7 @@ export default {
 	},
 	methods: {
 		alert_vals() {
-			let show = "State's version of test: "+ds.test+"\n\nSim_Meta component's version of test:"+this.test;
+			let show = ds.meta.running+" for running\n\nState's version of test: "+ds.test+"\n\nSim_Meta component's version of test:"+this.test;
 			alert(show) 
 		},
 		update_state() {

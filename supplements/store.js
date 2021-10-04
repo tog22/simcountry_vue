@@ -19,7 +19,7 @@ new Vue({
 	},
 });
 
-export default state;
+export default ds;
 
 
 /* Method from another tutorial, not used:
