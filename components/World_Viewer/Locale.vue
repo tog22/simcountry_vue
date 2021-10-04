@@ -31,7 +31,7 @@
 				</h2>
 				<div class="s_content">
 					<p>
-						🌲 {{locale.resources['trees']}} 
+						🌲 Ample <!-- {{locale.resources['trees']}} -->
 					</p>
 				</div>
 			</div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-	import w from '../model/World.js'
+	import w from '@/model/World.js'
 	
 	import Building from './Building.vue'
 

@@ -42,7 +42,7 @@
 			w.objects[w.next] = new Locale();
 			w.cll = w.latest; // currently loading locale - for businesses etc. within it
 			w.objects[w.latest].custom_name = 'Murwood Forest';
-			w.objects[w.latest].resources['trees'] = 2000;
+			w.objects[w.latest].resources['trees'] = 2000000;
 			w.objects[w.latest].aspects['soil_quality'] = 100;
 			
 			// Create building types

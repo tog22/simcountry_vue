@@ -3,7 +3,7 @@
 </template>
 
 <script>
-	import Locale from './Locale'
+	import Locale from './World_Viewer/Locale'
 	
 	export default {
 		name: 'World_Viewer',
