@@ -20,28 +20,16 @@ export default class Building {
 		
 	}
 	
-	/*
-	display() {
-		show_info_box(this.oid);
-		show_on_map(this.oid);
-		this.render();
-	}
-	
-	render() {
-		let html = '';
-		if (!_.isEmpty(this.inventory)) {
-			html += show_hash(this.inventory, 'Inventory');
-		}
-		$('#o'+this.oid+' .ct').html(html);
-	}
-	
 	update() {
 		// Convert inputs to outputs
 		this.operate();
-		// Finally, render
-		this.render();
 	}
 	
+	operate() {
+		// Fetch resources
+	}
+	
+	/*
 	operate() {
 		// Fetch resources
 		/* For now, from the locale's base resources. Later, from (a) not-too-far locales (for lumbermills, unless each locale has a woodchopper instead); or (b) other buildings; or (c) - a special case of (b) - trading posts/ports, which record local demand then fetch it. *//*

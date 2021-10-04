@@ -9,3 +9,6 @@ export const bus = new Vue()
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+import loop from './aspects/loop'
+loop()

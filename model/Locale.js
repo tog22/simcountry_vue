@@ -15,6 +15,10 @@ export default class Locale {
 		w.latest++;
 	}
 	
+	update() {
+		// nothing needed yet
+	}
+	
 	// constructor()
 	// {
 	// 	this.oid = g.next;
