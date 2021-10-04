@@ -1,0 +1,74 @@
+/******************
+*******************
+**			     **
+**    LOCALES    **
+**			     **
+*******************
+******************/
+
+/* !• LOCALES */
+
+.locale {
+	display: flex;
+	align-items: top;
+	flex-wrap: wrap;
+	
+	padding: 50px 40px;
+}
+
+.locale .rhs {
+	flex-grow: 1;
+}
+
+/* !•• TILES */
+
+.t {
+	display: table-cell;
+	vertical-align: top;
+	height: 144px;
+}
+
+
+/******************
+*******************
+**			     **
+**    NATURAL    **
+**   FEATURES   **
+**			     **
+*******************
+******************/
+
+/* !• NATURAL FEATURES */
+
+/* !•• TERRAIN BACKGROUNDS */
+
+.grassland {
+	background-color:#4fa953;
+}
+
+/* !•• FEATURES (FORESTS, ETC) */
+
+.forest img {
+	height: 83px;
+}
+
+
+/******************
+*******************
+**			     **
+**   BUILDINGS   **
+**			     **
+*******************
+******************/
+
+/* !• BUILDINGS */
+
+.lumber_mill img {
+	height: 78px;
+	padding-top: 25px;
+}
+
+.farm img {
+	width: 112px;
+	padding-top: 2px;
+}
