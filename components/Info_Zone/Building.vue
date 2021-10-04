@@ -5,7 +5,7 @@
 		</h2>
 	<div class="s_content">
 		<p>
-			
+			{{id}}
 		</p>
 	</div>
 	</div>
