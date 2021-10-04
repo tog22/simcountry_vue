@@ -11,10 +11,11 @@
 						<img src="graphics/nature/tree.png">
 						<img src="graphics/nature/tree.png">
 					</div>
-					<div class="building_container t" v-for="building_id in building_ids" :key={building_id}>
-						<!-- ↑ TODO: Change key to fix this error:
-							"Avoid using non-primitive value as key, use string/number value instead."
-						-->
+					<div 
+						v-for="building_id in building_ids"
+						:key="'index_world_viewer_l'+locale_id+'b'+building_id"
+						class="building_container t"
+					>
 						<Building :id="building_id" />
 					</div>
 					<div class="rhs t">
