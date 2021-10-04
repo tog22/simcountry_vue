@@ -1,20 +1,29 @@
 <template>
-	<World_Viewer :locale="0"/>
+	<div id="window">
+		<Control_Bar/>
+		<World_Viewer :locale="0"/>
+		<Info_Zone/>
+	</div>
 </template>
 
 <script>
-	import World_Viewer from './World_Viewer.vue'
+	import '@/graphics/ui.css';
+	import '@/graphics/map.css';
 	
-	import Locale from '../model/Locale.js'
-	import Building from '../model/Building.js'
-	import Building_Type from '../model/Building_Type.js'
+	import Control_Bar from './components/Control_Bar.vue'
+	import World_Viewer from './components/World_Viewer.vue'
+	import Info_Zone from './components/Info_Zone.vue'
 	
-	import { bus } from '../main'
+	import Locale from './model/Locale.js'
+	import Building from './model/Building.js'
+	import Building_Type from './model/Building_Type.js'
 	
 	export default {
-		name: 'World',
+		name: 'App',
 		components: {
-			World_Viewer
+			World_Viewer,
+			Control_Bar,
+			Info_Zone
 		},
 		data() {
 			return {
@@ -28,6 +37,7 @@
 				latest: -1,		// Latest object id
 				cll: null,	// Currently loading locale
 				cvl: null,	// Current visible locale
+				day: 1,
 				names: {
 					people: {
 						m: [
@@ -108,3 +118,7 @@
 		}
 	}
 </script>
+
+<style>
+
+</style>

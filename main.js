@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
+import World from './World.vue'
 
 Vue.config.productionTip = false
 
@@ -7,5 +7,5 @@ Vue.config.productionTip = false
 export const bus = new Vue()
 
 new Vue({
-  render: h => h(App),
+  render: h => h(World),
 }).$mount('#app')

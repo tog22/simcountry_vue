@@ -5,12 +5,12 @@
 		</div>
 		<div class="controls">
 			<div class="time_control control first" @click="play_or_pause">
-				<span id="play_pause" class="btn">
-					<span v-html="play_pause_icon"></span>
+				<span id="play_pause" class="btn"
+					v-html="play_pause_icon">
 				</span>
 				<span class="label">
 					<span id="timer">
-						Day <span id="day">1</span>
+						Day 
 					</span>
 				</span>
 			</div>
@@ -50,7 +50,7 @@
 
 <script>
 	let w = window.world
-	import ds from '../supplements/store.js'
+	import ds from '../aspects/store.js'
 
 	// import VMenuMultiLevel from 'v-menu-multi-level'
 	// import 'v-menu-multi-level/dist/v-menu-multi-level.css'
@@ -65,15 +65,19 @@
 	export default {
 		name: 'Control_Bar',
 		components: {
-			
+			//VMenuMultiLevel,
 		},
 		computed: {
 			play_pause_icon: function() {
 				if (!ds.meta.running) {
+					console.log(w)
 					return '▶️'
 				} else {
 					return '⏸'
 				}
+			},
+			day: function() {
+				return w.day
 			}
 		},
 		methods: {

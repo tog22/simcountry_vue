@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ds from '../supplements/store.js'
+import ds from '../aspects/store.js'
 
 export default {
 	name: 'simm',
