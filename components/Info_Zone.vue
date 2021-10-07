@@ -46,6 +46,13 @@
 						this.$el.appendChild(bulding_info_instance.$el)
 						*/
 						break;
+					case 'Close window': {
+						const index = this.open_buildings.indexOf(e.id);
+						if (index > -1) {
+							this.open_buildings.splice(index, 1);
+						}
+						break;
+					}
 					default:
 						console.log("Unknown e.do")
 						break;
