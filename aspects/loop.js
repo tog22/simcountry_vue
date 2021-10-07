@@ -5,7 +5,11 @@
 import w from '../model/World.js'
 import ds from '../aspects/store.js'
 
-export default function loop() {
+export default function start_loop() {
+	setTimeout(loop, 2000);
+}
+
+export function loop() {
 	update();
 	setTimeout(loop, 2000);
 }

@@ -1,5 +1,12 @@
 <template>
 	<div id="info_zone_global">
+		<div 
+			v-for="id in open_buildings"
+			:key="'info_zone_b'+id"
+			class="info_for_buildings"
+		>
+			<Building_Info :id="id" />
+		</div>
 	</div>
 </template>
 
@@ -11,6 +18,11 @@
 	
 	export default {
 		name: 'Info_Zone',
+		data() {
+			return {
+				open_buildings: [1]	
+			}
+		},
 		created (){
 			bus.$on('iz', (e) => {
 				var Building_Info_Class = Vue.extend(Building_Info)
