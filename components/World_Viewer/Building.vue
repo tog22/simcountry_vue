@@ -18,9 +18,9 @@
 		methods: {
 			building_click: function () {
 				let event = {
-					do:			'show_bld',
+					do:			'Show building',
 					id:			this.id,
-					prompt:		'click on building in world viewer',
+					prompt:		'A click on a building in world viewer',
 				}
 				bus.$emit('iz', event)
 			}

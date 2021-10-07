@@ -20,18 +20,37 @@
 		name: 'Info_Zone',
 		data() {
 			return {
-				open_buildings: [1]	
+				open_buildings: []	
 			}
 		},
 		created (){
 			bus.$on('iz', (e) => {
-				var Building_Info_Class = Vue.extend(Building_Info)
-				var bulding_info_instance 
-					= new Building_Info_Class({
-						propsData: {id: 1}
-					});
-				bulding_info_instance.$mount()
-				this.$el.appendChild(bulding_info_instance.$el)
+				switch(e.do) {
+					case 'Show building':
+						if (!this.open_buildings.includes(e.id)) {
+							this.open_buildings.push(e.id)
+						} else {
+							// To do, low priority
+							// Pulse the open window
+						}
+						/*
+						** Another way to add components, 
+						** kept for reference
+						**
+						var Building_Info_Class = Vue.extend(Building_Info)
+						var bulding_info_instance 
+							= new Building_Info_Class({
+								propsData: {id: 1}
+							});
+						bulding_info_instance.$mount()
+						this.$el.appendChild(bulding_info_instance.$el)
+						*/
+						break;
+					default:
+						console.log("Unknown e.do")
+						break;
+				}
+				
 			})
 		},
 		components: {
