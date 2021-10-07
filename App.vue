@@ -51,7 +51,7 @@
 			w.btypes['lumber_mill'].lc_name = 'lumber mill';
 			w.btypes['lumber_mill'].cap_name = 'Lumber Mill';
 			w.btypes['lumber_mill'].inputs['trees'] = 1;
-			w.btypes['lumber_mill'].outputs['lumber'] = 1;
+			w.btypes['lumber_mill'].outputs['Lumber'] = 1;
 			
 			w.btypes['farm'] = new Building_Type('farm');
 			w.btypes['farm'].lc_name = 'farm';

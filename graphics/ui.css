@@ -222,22 +222,36 @@ body > #window {
 #shown_locale_info {
 	/* Module rem size */
 	font-size: 1rem;
-}
-
-/* !•• INFO BOXES (OLD) */
-
-#object_details {
-	margin: 2em 1em;
-}
-
-.object {
-	padding: 1em;
-	border: 1px solid black;
-	margin-bottom: 2em;
+	
+	flex-grow: 1;
+	
+	border-top: 1px solid white;
+	background: #7c98b3;
+	padding: 20px; /* TODO: turn into a var for leftmost content, including the control bar too */
 }
 
 
-.highlight_anim {
+/* !•• Windows */
+
+.window {
+	border: 4px solid #eee;
+	border-radius: 4px;
+	padding: 0.5em 1.3em 1.2em;
+	max-width: 400px;
+	color: #eee;
+	margin-bottom: 1.6em;
+}
+
+.window h2 {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 0.8em;
+	letter-spacing: 0.05em;
+	margin-top: 0.4em;
+}
+
+
+.window.highlight_anim {
 	animation-duration: 3s;
 	animation-name: highlight_anim;
 }

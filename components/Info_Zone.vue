@@ -1,6 +1,5 @@
 <template>
 	<div id="info_zone_global">
-		<Building_Info :id="0" />
 	</div>
 </template>
 
@@ -15,7 +14,10 @@
 		created (){
 			bus.$on('iz', (e) => {
 				var Building_Info_Class = Vue.extend(Building_Info)
-				var bulding_info_instance = new Building_Info_Class()
+				var bulding_info_instance 
+					= new Building_Info_Class({
+						propsData: {id: 1}
+					});
 				bulding_info_instance.$mount()
 				this.$el.appendChild(bulding_info_instance.$el)
 			})
