@@ -4,7 +4,7 @@
 			Murwood Forest
 		</div>
 		<div class="controls">
-			<div class="time_control control first" @click="play_or_pause">
+			<div class="time_control no_day_shown control first" @click="play_or_pause">
 				<span id="play_pause" class="btn"
 					v-html="play_pause_icon">
 				</span>
@@ -16,7 +16,7 @@
 				</span>
 				-->
 			</div>
-			<div class="add_control control w_dropdown">
+			<div class="add_control control w_dropdown s_right">
 				<div class="dropdown">
 					<div class="s_item" sc-action="add_lumber_mill" accesskey="f">
 							Lumber Mill

@@ -91,7 +91,7 @@ body > #window {
 	color: white;
 	
 	background: #7c98b3;
-	padding: 4px 20px;
+	padding: 0px 20px;
 	border-bottom: 1px solid white;
 	
 	display: flex;
@@ -102,7 +102,9 @@ body > #window {
 /* !•• INFO ZONE */
 
 #control_bar .s_info {
-	padding-top: 5px;
+	padding-top: 9px;
+	padding-bottom: 4px;
+	height: 100%;
 }
 
 /**************
@@ -117,6 +119,8 @@ body > #window {
 
 .control {
 	display: inline-block;
+	height: 100%;
+	padding-top: 5px;
 }
 
 .control .label {
@@ -130,6 +134,11 @@ body > #window {
 
 .time_control {
 	width: 100px;
+}
+
+.time_control.no_day_shown {
+	width: initial;
+	padding-right: 33px;
 }
 
 /*********
@@ -173,21 +182,6 @@ body > #window {
 }
 
 
-
-/* !•• DROPDOWN MENUS (VMENU) */
-
-#menus_mml #v-menu-multi-level {
-	background: transparent !important;
-}
-
-#menus_mml #v-menu-multi-level .dropdown-text  {
-	background: transparent !important;
-}
-
-#menus_mml #v-menu-multi-level .dropdown-menu-open-down .dropdown-text  {
-	background: rgb(76, 93, 108) !important;
-}
-
 /* !•• DROPDOWNS */
 
 .control {
@@ -206,6 +200,12 @@ body > #window {
 	padding: 0.2em 1.2em;
 }
 
+.control.s_right .dropdown {
+	left: auto;
+	right: -20px;
+	border-right: none;
+}
+
 .control .dropdown .s_item {
 	padding: 0.7em 3em 0.7em 0em;
 	border-bottom: 1px dotted white;
@@ -215,6 +215,25 @@ body > #window {
 .control .dropdown .s_item:last-child {
 	border-bottom: none;
 }
+
+.control:hover .dropdown {
+	display: block;
+}
+
+/* !•• DROPDOWN MENUS (VMENU) */
+
+#menus_mml #v-menu-multi-level {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-text  {
+	background: transparent !important;
+}
+
+#menus_mml #v-menu-multi-level .dropdown-menu-open-down .dropdown-text  {
+	background: rgb(76, 93, 108) !important;
+}
+
 
 /* !••••••••••••••••••••••••••••*/
 /* !• INFO ZONE					*/
