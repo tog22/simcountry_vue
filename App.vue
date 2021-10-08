@@ -56,7 +56,8 @@
 			w.btypes['farm'] = new Building_Type('farm');
 			w.btypes['farm'].lc_name = 'farm';
 			w.btypes['farm'].cap_name = 'Farm';
-			w.btypes['farm'].outputs['food'] = 1;
+			w.btypes['farm'].outputs['Food'] = 1;
+			w.btypes['farm'].build_requirements['Lumber'] = 20;
 			
 			// Create a building
 			

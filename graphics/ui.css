@@ -17,7 +17,8 @@
 /* !•• COLOURS */
 
 :root {
-	--ui-light: #7c98b3;
+	--ui-light: #4c5d6c; /* light = #7c98b3; */
+	--ui-hover-light: #adccd9;
 }
 
 /* !•• BASIC ELEMENTS */
@@ -88,11 +89,11 @@ body > #window {
 	font-size: 1rem;
 	
 	font-weight: bold;
-	color: white;
+	color: #fcf6ee; /* light = white; */
 	
-	background: #7c98b3;
+	background: #4c5d6c; /* light = #7c98b3; */
 	padding: 0px 20px;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid #353738; /* light = white; */
 	
 	display: flex;
 	flex-wrap: wrap;
@@ -138,7 +139,7 @@ body > #window {
 
 .time_control.no_day_shown {
 	width: initial;
-	padding-right: 33px;
+	padding-right: 28px;
 }
 
 /*********
@@ -194,10 +195,14 @@ body > #window {
 	position: absolute;
 	top: 33px;
 	left: -0.8em;
-	border: 1px solid white;
+	border: 1px solid #353738; /* light = white; */
 	border-top: none;
 	background-color: var(--ui-light);
 	padding: 0.2em 1.2em;
+}
+
+.control:hover .dropdown {
+	display: block;
 }
 
 .control.s_right .dropdown {
@@ -208,7 +213,7 @@ body > #window {
 
 .control .dropdown .s_item {
 	padding: 0.7em 3em 0.7em 0em;
-	border-bottom: 1px dotted white;
+	border-bottom: 1px dotted #353738; /* light = white; */
 	white-space: nowrap;
 }
 
@@ -216,8 +221,8 @@ body > #window {
 	border-bottom: none;
 }
 
-.control:hover .dropdown {
-	display: block;
+.control .dropdown .s_item:hover {
+	color: var(--ui-hover-light);
 }
 
 /* !•• DROPDOWN MENUS (VMENU) */
@@ -244,9 +249,18 @@ body > #window {
 	
 	flex-grow: 1;
 	
-	border-top: 1px solid white;
-	background: #7c98b3;
+	border-top: 1px solid #4c5d6c; /* light = white; */
+	background: #4c5d6c; /* light = #7c98b3; */
 	padding: 20px; /* TODO: turn into a var for leftmost content, including the control bar too */
+}
+
+
+#info_zone_global {		
+	flex-grow: 1;
+	
+	/* border-top: 1px solid white; */
+	background: #4c5d6c; /* light = #7c98b3; */
+	padding: 20px; /* var */
 }
 
 

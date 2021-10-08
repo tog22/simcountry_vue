@@ -67,11 +67,4 @@
 </script>
 
 <style>
-	#info_zone_global {		
-		flex-grow: 1;
-		
-		/* border-top: 1px solid white; */
-		background: #7c98b3;
-		padding: 20px; /* var */
-	}
 </style>

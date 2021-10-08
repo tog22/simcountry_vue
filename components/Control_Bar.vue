@@ -18,34 +18,21 @@
 			</div>
 			<div class="add_control control w_dropdown s_right">
 				<div class="dropdown">
-					<div class="s_item" sc-action="add_lumber_mill" accesskey="f">
+					<div class="s_item" @click="add('lumber_mill')">
 							Lumber Mill
 					</div>
-					<div class="s_item" sc-action="add_farm">
+					<div class="s_item" @click="add('farm')">
 						Farm
 					</div>
 				</div>
 				<span class="btn">
 					⤵️
 				</span>
-				<!-- 
-				<div class="btn_ol_and_bg">
-					<img class="btn_bg" src="graphics/ui/button.png">
-					<div class="btn_ol">
-						+
-					</div>
-				</div>
-				-->
-				<span class="label" @click="test_add_lm">
+				
+				<span class="label">
 					Add
 				</span>
 			</div>
-			<!--
-			<div id="menus_mml">
-				<v-menu-multi-level :nodes="menus" @click-item="menu_item_clicked">
-				</v-menu-multi-level>
-			</div>
-			-->
 		</div>
 	</div>
 </template>
@@ -84,27 +71,10 @@
 			play_or_pause() {
 				ds.meta.running = !ds.meta.running;
 			},
-			test_add_lm() {
-				w.objects[w.next] = new Building(0, 'lumber_mill');
+			add(type) {
+				w.objects[w.next] = new Building(0, type);
 				w.objects[0].buildings.push(w.latest);
-			},
-			menu_item_clicked(event,data) {
-				
-				switch (data.label) {
-					case 'Lumber Mill':
-						// bus.$emit('add', 'lumber_mill_emitted');
-						
-						//bldgs.add('lumber_mill', 0);
-						
-						w.objects[w.next] = new Building(0, 'lumber_mill');
-						w.objects[0].buildings.push(w.latest);
-						// ↑ TO DO: Change 0 in bldgs.add() from being hardcorded to being w.cvl, once I make the Currently Visible Locale get set 
-						alert('end')
-						break;
-					case 'Farm':
-						break;
-				}
-			}	
+			},	
 		},
 		data() {
 			return {
