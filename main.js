@@ -10,5 +10,5 @@ new Vue({
   render: h => h(App),
 }).$mount('#app')
 
-import start_loop from './aspects/loop';
-start_loop();
+import start_loop from './aspects/loop'
+start_loop()

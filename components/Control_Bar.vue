@@ -8,11 +8,13 @@
 				<span id="play_pause" class="btn"
 					v-html="play_pause_icon">
 				</span>
+				<!--
 				<span class="label">
 					<span id="timer">
 						Day {{day}}
 					</span>
 				</span>
+				-->
 			</div>
 			<div class="add_control control w_dropdown">
 				<div class="dropdown">

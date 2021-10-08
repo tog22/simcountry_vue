@@ -12,11 +12,11 @@ export default class Building {
 		this.oid = w.next;
 		w.next++;
 		w.latest++;
-		
-		this.type = type;
-		
 		this.parent_locale = parent_locale;
 		w.objects[parent_locale].children.push(this.oid);
+		
+		this.type = type;
+		this.custom_name = "Frank's lumber mill"
 		
 	}
 	
