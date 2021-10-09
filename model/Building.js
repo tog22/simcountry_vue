@@ -1,4 +1,5 @@
-import w from '../model/World.js'
+import w from '@/model/World'
+import Person from '@/model/Person'
 
 export default class Building {
 	oid
@@ -6,17 +7,25 @@ export default class Building {
 	type
 	custom_name
 	inventory = {}
+	owner
 	
-	constructor(parent_locale, type)
+	constructor(parent_locale, type, owner_name = 'Josiah')
 	{
-		this.oid = w.next;
-		w.next++;
-		w.latest++;
-		this.parent_locale = parent_locale;
-		w.objects[parent_locale].children.push(this.oid);
+		this.oid = w.next
+		w.next++
+		w.latest++
 		
-		this.type = type;
-		this.custom_name = "Frank's "+type
+		this.type = type
+		this.parent_locale = parent_locale
+		let locale = w.objects[parent_locale]
+		locale.buildings.push(this.oid)
+		
+		// Create an owner each time, for now
+		// To do: switch to draw from pool of existing people, and create demand for new immigrants if wages are internationally competitive
+		let building_owned = this
+		this.owner = new Person(owner_name, building_owned)
+		
+		this.custom_name = owner_name+"'s "+type
 		
 	}
 	
@@ -56,15 +65,15 @@ export default class Building {
 		
 		/* For now, from other buildings in the locale. Later, from not-too-far locales, or profitably close locales, after accounting for transport costs.This inter-locale trade could be conducted via a special type of buildings, namely trading posts/ports, which record local demand then fetch it. */
 		
-		// Find inputs to fetch from the locale
-		let inputs_to_fetch = w.btypes[this.type].resource_inputs;
-		// Check if locale has enough of each resource needed
+		let inputs_to_fetch = w.btypes[this.type].inputs;
+		// Check if locale has enough of each input needed
 		let sufficient_inputs_check = true;
-		for (var resource_name_index in inputs_to_fetch) {
-			let amount_needed = inputs_to_fetch[resource_name_index];
-			if (!locale.inputs[resource_name_index]) {
+		for (var input_name_index in inputs_to_fetch) {
+			let amount_needed = inputs_to_fetch[input_name_index];
+			
+			if (!locale.inputs[input_name_index]) {
 				sufficient_inputs_check = false;
-			} else if (locale.inputs[resource_name_index] < amount_needed) {
+			} else if (locale.inputs[input_name_index] < amount_needed) {
 				sufficient_inputs_check = false;
 			}
 		}
@@ -72,9 +81,9 @@ export default class Building {
 			console.log('insuffic inputs')
 		}
 		
-		/***************
-		** FETCH BOTH **
-		****************/
+		/***********************************
+		** FETCH BOTH & PRODUCE INVENTORY **
+		************************************/
 		
 		// If so, subtract the resources from the locale, and move the inputs to the building
 		if (sufficient_resources_check && sufficient_inputs_check) {
@@ -92,5 +101,11 @@ export default class Building {
 				}
 			}
 		}
+		
+		/*******************************************
+		** MAKE INVENTORY AVAILABLE TO THE MARKET **
+		********************************************/
+		
+		
 	}
 }

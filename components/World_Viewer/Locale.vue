@@ -32,7 +32,7 @@
 			</h2>
 			<div class="s_content">
 				<p>
-					🌲 {{locale.resources['trees']}}
+					🌲 {{locale.resources['Trees']}}
 				</p>
 			</div>
 		</div>
@@ -66,7 +66,7 @@ export default {
 	created() {
 		let locale_c = w.objects[this.locale_id];
 		
-		const building_ids = locale_c.children;
+		const building_ids = locale_c.buildings;
 		this.building_ids = building_ids; // or = this.building_ids.concat(building_ids);
 		
 		
@@ -76,7 +76,7 @@ export default {
 		
 		
 		let w = this.$parent.$parent;
-		const building_ids_src = w.objects[this.locale].children;
+		const building_ids_src = w.objects[this.locale].buildings;
 		this.building_ids = building_ids_src;
 		console.log("array1 = ");
 		console.log(array1);

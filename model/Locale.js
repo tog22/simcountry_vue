@@ -3,11 +3,14 @@ import w from '../model/World.js'
 export default class Locale {
 	oid
 	custom_name
-	children = []
+	
 	resources = {}
 	aspects = {}
+	
 	buildings = []
 	dwellings = []
+	people = []
+	market = {}
 	
 	constructor() { 
 		this.oid = w.next;
@@ -16,7 +19,13 @@ export default class Locale {
 	}
 	
 	update() {
-		// nothing needed yet
+		this.operate()
+	}
+	
+	operate() {
+		for (var person of this.people) {
+			person.operate()
+		}
 	}
 	
 	// constructor()

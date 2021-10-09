@@ -52,7 +52,7 @@
 /* !•• TERRAIN BACKGROUNDS */
 
 .grassland {
-	background-color:#4fa953;
+	background-color: #5d8d55; /* light = #4fa953; */
 }
 
 /* !•• FEATURES (FORESTS, ETC) */
@@ -71,6 +71,10 @@
 ******************/
 
 /* !• BUILDINGS */
+
+.building_container {
+	margin-right: 25px;
+}
 
 .lumber_mill img {
 	height: 78px;
