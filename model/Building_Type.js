@@ -2,8 +2,10 @@ import w from '../model/World.js'
 
 export default class Building_Type {
 	name
-	inputs = []
 	outputs = []
+	inputs = []
+	resource_inputs = []
+	resource_multipliers = []
 	build_requirements = []
 	lc_name
 	cap_name

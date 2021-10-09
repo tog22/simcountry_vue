@@ -16,7 +16,7 @@ export default class Building {
 		w.objects[parent_locale].children.push(this.oid);
 		
 		this.type = type;
-		this.custom_name = "Frank's lumber mill"
+		this.custom_name = "Frank's "+type
 		
 	}
 	
@@ -26,27 +26,61 @@ export default class Building {
 	}
 	
 	operate() {
-		// Fetch resources
-		/* For now, from the locale's base resources. Later, from (a) not-too-far locales (for lumbermills, unless each locale has a woodchopper instead); or (b) other buildings; or (c) - a special case of (b) - trading posts/ports, which record local demand then fetch it. */
+		/********************
+		** RESOURCES CHECK **
+		********************/
+		
+		/* For now, only from the locale's resources. Later, from not-too-far locales (for lumber mills, unless each locale has its own lumber mill (possibly renamed to a woodchopper, which produces 'logs' which a more advanced lumber mill building process into 'lumber'). */
+		
 		// Find locale
 		let locale = w.objects[this.parent_locale];
 		// Find resources to fetch from the locale
-		let to_fetch = w.btypes[this.type].inputs;
+		let resources_to_fetch = w.btypes[this.type].resource_inputs;
 		// Check if locale has enough of each resource needed
 		let sufficient_resources_check = true;
-		for (var resource_name_index in to_fetch) {
-			let amount_needed = to_fetch[resource_name_index];
+		for (var resource_name_index in resources_to_fetch) {
+			let amount_needed = resources_to_fetch[resource_name_index];
 			if (!locale.resources[resource_name_index]) {
 				sufficient_resources_check = false;
 			} else if (locale.resources[resource_name_index] < amount_needed) {
 				sufficient_resources_check = false;
 			}
 		}
-		// If so, move the resources from the locale to the business
-		if (sufficient_resources_check) {
+		if (!sufficient_resources_check) {
+			console.log('insuffic resources')
+		}
+		
+		/*****************
+		** INPUTS CHECK **
+		******************/
+		
+		/* For now, from other buildings in the locale. Later, from not-too-far locales, or profitably close locales, after accounting for transport costs.This inter-locale trade could be conducted via a special type of buildings, namely trading posts/ports, which record local demand then fetch it. */
+		
+		// Find inputs to fetch from the locale
+		let inputs_to_fetch = w.btypes[this.type].resource_inputs;
+		// Check if locale has enough of each resource needed
+		let sufficient_inputs_check = true;
+		for (var resource_name_index in inputs_to_fetch) {
+			let amount_needed = inputs_to_fetch[resource_name_index];
+			if (!locale.inputs[resource_name_index]) {
+				sufficient_inputs_check = false;
+			} else if (locale.inputs[resource_name_index] < amount_needed) {
+				sufficient_inputs_check = false;
+			}
+		}
+		if (!sufficient_inputs_check) {
+			console.log('insuffic inputs')
+		}
+		
+		/***************
+		** FETCH BOTH **
+		****************/
+		
+		// If so, subtract the resources from the locale, and move the inputs to the building
+		if (sufficient_resources_check && sufficient_inputs_check) {
 			// Subtract the resources from the locale
-			for (var resource_name_index in to_fetch) {
-				locale.resources[resource_name_index] -= to_fetch[resource_name_index];
+			for (var resource_name_index in resources_to_fetch) {
+				locale.resources[resource_name_index] -= resources_to_fetch[resource_name_index];
 			}
 			// Add the output resources to the business
 			let to_output = w.btypes[this.type].outputs;

@@ -42,28 +42,34 @@
 			w.objects[w.next] = new Locale();
 			w.cll = w.latest; // currently loading locale - for businesses etc. within it
 			w.objects[w.latest].custom_name = 'Murwood Forest';
-			w.objects[w.latest].resources['trees'] = 2000000;
-			w.objects[w.latest].aspects['soil_quality'] = 100;
+			w.objects[w.latest].resources['Trees'] = 2000000;
+			w.objects[w.latest].aspects['soil quality'] = 2; 
+			// ↑ 2 above = displayed quality of 100 = (x-1)*100 = (2-1)*100
 			
 			// Create building types
 			
 			w.btypes['lumber_mill'] = new Building_Type('lumber_mill');
 			w.btypes['lumber_mill'].lc_name = 'lumber mill';
 			w.btypes['lumber_mill'].cap_name = 'Lumber Mill';
-			w.btypes['lumber_mill'].inputs['trees'] = 1;
+			w.btypes['lumber_mill'].inputs['Food'] = 1;
+			w.btypes['lumber_mill'].inputs['Trees'] = 1;
 			w.btypes['lumber_mill'].outputs['Lumber'] = 1;
 			
 			w.btypes['farm'] = new Building_Type('farm');
 			w.btypes['farm'].lc_name = 'farm';
 			w.btypes['farm'].cap_name = 'Farm';
-			w.btypes['farm'].outputs['Food'] = 1;
+			w.btypes['farm'].inputs['Food'] = 1;
+			w.btypes['farm'].outputs['Food'] = 2;
 			w.btypes['farm'].build_requirements['Lumber'] = 20;
+			w.btypes['farm'].resource_multipliers['soil quality'] = 1;
 			
 			// Create a building
 			
 			w.objects[w.next] = new Building(w.cll,'lumber_mill');
 			w.objects[w.cll].buildings.push(w.latest);
 			w.objects[w.latest].custom_name = "Joseph's Lumber Mill";
+			w.objects[w.latest].inventory["Food"] = 60; 
+			// ↑ For starting lumber mill only
 			
 			/*************************
 			**************************
