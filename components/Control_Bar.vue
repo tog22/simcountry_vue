@@ -38,8 +38,9 @@
 </template>
 
 <script>
-	import w from '../model/World.js'
-	import ds from '../aspects/store.js'
+	import w from '@/model/World'
+	import a from '@/model/Actions'
+	import ds from '@/aspects/store'
 	
 	// import VMenuMultiLevel from 'v-menu-multi-level'
 	// import 'v-menu-multi-level/dist/v-menu-multi-level.css'
@@ -72,8 +73,13 @@
 				ds.meta.running = !ds.meta.running;
 			},
 			add(type) {
-				w.objects[w.next] = new Building(0, type);
-				w.objects[0].buildings.push(w.latest);
+				let build_requirements = w.btypes[type].build_requirements;
+				let reqt = 'Lumber'
+				let reqnum = build_requirements['Lumber']
+				if (a.get_resources(reqt,reqnum)) {
+					w.objects[w.next] = new Building(0, type);
+					w.objects[0].buildings.push(w.latest);
+				}
 			},	
 		},
 		data() {
