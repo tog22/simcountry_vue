@@ -19,8 +19,9 @@ function update() {
 		return;
 	}
 	w.day++;
-	for (var i in w.objects) 
-	{
-		w.objects[i].update(); 
-	}
+	w.objects[0].update();
+	// for (var i in w.objects) 
+	// {
+	// 	w.objects[i].update(); 
+	// }
 }

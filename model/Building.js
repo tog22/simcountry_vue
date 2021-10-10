@@ -8,15 +8,18 @@ export default class Building {
 	custom_name
 	inventory = {}
 	owner
+	salary
 	coins
+	costs
 	
-	constructor(parent_locale, type, owner_name = 'Josiah')
+	constructor(parent_locale, type, salary, owner_name = 'Josiah')
 	{
 		this.oid = w.next
 		w.next++
 		w.latest++
 		
 		this.type = type
+		this.salary = salary
 		this.parent_locale = parent_locale
 		let locale = w.objects[parent_locale]
 		locale.buildings.push(this.oid)
@@ -28,14 +31,13 @@ export default class Building {
 		
 		this.custom_name = owner_name+"'s "+type
 		
-	}
-	
-	update() {
-		// Convert inputs to outputs
-		this.operate();
+		this.costs = 1
+		
 	}
 	
 	operate() {
+		this.pay_people()
+		
 		/********************
 		** RESOURCES CHECK **
 		********************/
@@ -67,6 +69,8 @@ export default class Building {
 		/* For now, from other buildings in the locale. Later, from not-too-far locales, or profitably close locales, after accounting for transport costs.This inter-locale trade could be conducted via a special type of buildings, namely trading posts/ports, which record local demand then fetch it. */
 		
 		let inputs_to_fetch = w.btypes[this.type].inputs;
+		let outputs_to_make = w.btypes[this.type].outputs;
+		
 		// Check if locale has enough of each input needed
 		let sufficient_inputs_check = true;
 		for (var input_name_index in inputs_to_fetch) {
@@ -93,20 +97,30 @@ export default class Building {
 				locale.resources[resource_name_index] -= resources_to_fetch[resource_name_index];
 			}
 			// Add the output resources to the business
-			let to_output = w.btypes[this.type].outputs;
-			for (var item_name_index in to_output) {
-				if (this.inventory[item_name_index]) {
-					this.inventory[item_name_index] += to_output[item_name_index];
+			for (var output_name in outputs_to_make) {
+				if (this.inventory[output_name]) {
+					this.inventory[output_name] += outputs_to_make[output_name];
 				} else {
-					this.inventory[item_name_index] = to_output[item_name_index];
+					this.inventory[output_name] = outputs_to_make[output_name];
 				}
 			}
 		}
 		
-		/*******************************************
-		** MAKE INVENTORY AVAILABLE TO THE MARKET **
-		********************************************/
+		/*****************************************
+		** MAKE OUTPUTS AVAILABLE TO THE MARKET **
+		******************************************/
+		for (var output_name in outputs_to_make) {
+			if (this.inventory[output_name] !== undefined) {
+				if (this.inventory[output_name] > 0) {
+					locale.offer(output_name, this.inventory[output_name], (this.costs + 1), this)
+				}
+			}
+		}
 		
-		
+	}
+	
+	pay_people() {
+		this.owner.coins += this.salary
+		console.log(this.owner.name+' paid '+this.salary+' coins')
 	}
 }

@@ -38,6 +38,15 @@
 				</div>
 			</div>
 			-->
+			<div class="window">
+				<h2>
+					People 
+				</h2>
+				<div class="s_content">
+					<div v-html="people_info" class="line_list">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -66,34 +75,21 @@ export default {
 			locale: w.objects[this.locale_id]
 		}
 	},
+	computed: {
+		people_info: function() {
+			let ret = ''
+			let locale_c = w.objects[this.locale_id]
+			for (var person of locale_c.people) {
+				ret += '<div><span style="font-size: 80%; margin-right: 0.7em">👤</span> '+person.name+', '+person.inventory["Food"]+' food, '+person.coins+' coins</div>'
+			}
+			return ret
+		}
+	},
 	created() {
 		let locale_c = w.objects[this.locale_id];
 		
 		const building_ids = locale_c.buildings;
-		this.building_ids = building_ids; // or = this.building_ids.concat(building_ids);
-		
-		
-		
-		/*
-		let array1 = [1,2];
-		
-		
-		let w = this.$parent.$parent;
-		const building_ids_src = w.objects[this.locale].buildings;
-		this.building_ids = building_ids_src;
-		console.log("array1 = ");
-		console.log(array1);
-		console.log("const building_ids_src =");
-		console.log(building_ids_src);
-		console.log("this.bi = ");
-		console.log(this.building_ids);
-		*/
-	}, 
-	methods: {
-		log(to_log) {
-			console.log('___ Manual console log ___')
-			console.log(to_log);
-		}
+		this.building_ids = building_ids;
 	}
 }
 </script>

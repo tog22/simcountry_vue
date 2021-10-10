@@ -264,7 +264,7 @@ body > #window {
 }
 
 
-/* !•• Windows */
+/* !•• WINDOWS */
 
 .window {
 	border: 4px solid #eee;
@@ -301,4 +301,10 @@ body > #window {
 	100% {
 		background-color: white;
 	}
+}
+
+/* !•• LISTS */
+
+.line_list {
+	font-size: 0.82em;
 }
