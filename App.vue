@@ -40,7 +40,7 @@
 			w.objects[w.next] = new Locale();
 			w.cl = w.cvl = w.cll = w.latest; // currently loading locale - for businesses etc. within it
 			let locale = w.objects[w.cl];
-			locale.custom_name = 'Murwood Forest';
+			locale.name = 'Murwood Forest';
 			locale.resources['Trees'] = 2000000;
 			locale.aspects['soil quality'] = 2; 
 			// ↑ 2 above = displayed quality of 100 = (x-1)*100 = (2-1)*100

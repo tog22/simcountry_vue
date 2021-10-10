@@ -2,7 +2,7 @@ import w from '../model/World.js'
 
 export default class Locale {
 	oid
-	custom_name
+	name
 	
 	resources = {}
 	aspects = {}
@@ -20,6 +20,9 @@ export default class Locale {
 		this.oid = w.next;
 		w.next++;
 		w.latest++;
+		
+		this.population = 0
+		this.active_population = 0
 	}
 	
 	update() {

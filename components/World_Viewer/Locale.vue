@@ -1,6 +1,6 @@
 <template>
 	<div id="locale_shown">
-		<Control_Bar/>
+		<Control_Bar  :locale_id="locale_id"/>
 		<div id="visual">
 			<div class="temp">
 				<div class="locale grassland" id="v0">
