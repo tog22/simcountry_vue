@@ -10,7 +10,11 @@ export default class Locale {
 	buildings = []
 	dwellings = []
 	people = []
-	market = {}
+	sought = {}
+	offered = {}
+	
+	population
+	active_population
 	
 	constructor() { 
 		this.oid = w.next;
@@ -26,6 +30,20 @@ export default class Locale {
 		for (var person of this.people) {
 			person.operate()
 		}
+		// Reset sought & offered
+		this.sought = {}
+		this.offered = {}
+	}
+	
+	buy(good, quantity, max_bid, buyer) {
+		// TODO - add labour as a special case
+		if (this.offered[good] !== undefined) {
+			console.log('good found')
+		}
+	}
+	
+	offer(good, quantity, min_ask, seller) {
+		this.offered[good]
 	}
 	
 	// constructor()

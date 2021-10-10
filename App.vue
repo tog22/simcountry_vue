@@ -1,6 +1,5 @@
 <template>
 	<div id="window">
-		<Control_Bar/>
 		<World_Viewer :locale="0"/>
 		<Info_Zone/>
 	</div>
@@ -12,7 +11,6 @@
 	
 	import w from '@/model/World'
 	
-	import Control_Bar from './components/Control_Bar.vue'
 	import World_Viewer from './components/World_Viewer.vue'
 	import Info_Zone from './components/Info_Zone.vue'
 	
@@ -25,7 +23,6 @@
 		name: 'App',
 		components: {
 			World_Viewer,
-			Control_Bar,
 			Info_Zone
 		},
 		created() {

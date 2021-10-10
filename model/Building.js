@@ -8,6 +8,7 @@ export default class Building {
 	custom_name
 	inventory = {}
 	owner
+	coins
 	
 	constructor(parent_locale, type, owner_name = 'Josiah')
 	{
@@ -23,7 +24,7 @@ export default class Building {
 		// Create an owner each time, for now
 		// To do: switch to draw from pool of existing people, and create demand for new immigrants if wages are internationally competitive
 		let building_owned = this
-		this.owner = new Person(owner_name, building_owned)
+		this.owner = new Person(locale, owner_name, building_owned)
 		
 		this.custom_name = owner_name+"'s "+type
 		
