@@ -85,14 +85,40 @@ export default class Locale {
 				for (var bid of this.bids[good_name]) {
 					let bids_have_fallen_below_asks = false;
 					for (var ask of this.asks[good_name]) {
+						// Adjust the ask quantity down to match the building's inventory, in case its gone down since the ask, eg. from a farmer eating his own food
+						if (ask.seller.inventory[good_name] < ask.quantity) {
+							ask.seller.inventory[good_name] = ask.quantity
+						}
 						if (ask.min_ask <= bid.max_bid) {
 							var amount_to_buy = (ask.quantity < bid.quantity) ? ask.quantity : bid.quantity;
+							// ↓ TODO - change below to reflect auctioned rather than min ask price
+							if ((amount_to_buy * ask.min_ask) > bid.buyer.coins) {
+								// Stop trying to fill this bid, but move onto the next bid
+								break
+							}
+							//////
+							// console.log('_____ START LOOP ______')
+							// console.log('bidders starts loop with '+bid.buyer.coins)
+							// console.log('Farm starts loop with '+ask.seller.inventory[good_name] )
+							// console.log('The farm has an ask to sell '+ask.quantity+', amount to buy is '+amount_to_buy+', bid & ask deets below')
+							// console.log(bid)
+							// console.log(ask)
+							///////
 							ask.quantity -= amount_to_buy
 							bid.quantity -= amount_to_buy
 							ask.seller.inventory[good_name] -= amount_to_buy
 							bid.buyer.inventory[good_name] += amount_to_buy
 							bid.buyer.coins -= ask.min_ask
-							console.log(bid.buyer.name+' pays '+ask.min_ask+' coins')
+							////////
+							// console.log('ask quant reduced by '+amount_to_buy,' leaving ask as follows:')
+							// console.log(ask)
+							// console.log(bid.buyer.name+' pays '+ask.min_ask+' coins, leaving him with '+bid.buyer.coins)
+							// if (bid.buyer.coins < 0) {
+							// 	console.log("!!!!!! ERROR: negative money")
+							// }
+							// console.log('Farm now has '+ask.seller.inventory[good_name] )
+							// console.log('_____ END LOOP ______')
+							/////////
 							if (bid.quantity <= 0) {
 								// Stop trying to fill this bid, but move onto the next bid
 								break

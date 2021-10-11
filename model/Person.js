@@ -25,7 +25,7 @@ export default class Person {
 		this.coins = 10
 		this.inventory["Food"] = 10
 		this.can_eat = true
-		
+				
 		if (building_to_own) {
 			this.building_owned = building_to_own
 		}
@@ -36,17 +36,21 @@ export default class Person {
 		// 1) Try getting food from the building they own
 		// 		(TODO - work out some adjustment, like seeing if market price is cheaper, and somehow letting this drive up agricultural wages and thus prices()
 		
+		// console.log(this.name+" has "+this.coins+' coins')
+		
 		if (this.building_owned.inventory["Food"] !== undefined) {
 			if (this.building_owned.inventory["Food"] > 0) {
 				
-				this.building_owned.inventory["Food"] -= 1
 				this.inventory["Food"] += 1
-				console.log(this.name+" eats food from his building's stockpile")
+				if (this.building_owned.inventory["Food"] > 0) {
+					this.building_owned.inventory["Food"] -= 1
+				}
+				// console.log(this.name+" eats food from his building's stockpile")
 				
 				if (this.building_owned.type === 'farm') {
 					this.coins -= this.building_owned.salary
 					this.building_owned.coins += this.building_owned.salary
-					console.log('...paying 1 coin from his farm salary')
+					// console.log('...paying 1 coin from his farm salary')
 				}
 				
 				
@@ -61,7 +65,7 @@ export default class Person {
 	}
 	
 	eat_food() {
-		if (this.inventory["Food"] > 1) {
+		if (this.inventory["Food"] > 0) {
 			this.inventory["Food"] -= 1
 			this.can_eat = true
 		} else {

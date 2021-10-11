@@ -36,6 +36,7 @@ export default class Building {
 	}
 	
 	operate() {
+		// console.log(this.custom_name+' operating')
 		this.pay_people()
 		
 		/********************
@@ -103,6 +104,11 @@ export default class Building {
 				} else {
 					this.inventory[output_name] = outputs_to_make[output_name];
 				}
+				////////
+				// if (this.type === 'farm') {
+				// 	console.log('Farm produces 3? food, inventory is now'+this.inventory[output_name])
+				// }
+				///////
 			}
 		}
 		
@@ -113,6 +119,11 @@ export default class Building {
 			if (this.inventory[output_name] !== undefined) {
 				if (this.inventory[output_name] > 0) {
 					locale.offer(output_name, this.inventory[output_name], (this.costs + 1), this)
+					////////
+					// if (this.type === 'farm') {
+					// 	console.log('**** Farm has and offers '+this.inventory[output_name])
+					// }
+					///////
 				}
 			}
 		}
@@ -121,6 +132,6 @@ export default class Building {
 	
 	pay_people() {
 		this.owner.coins += this.salary
-		console.log(this.owner.name+' paid '+this.salary+' coins')
+		// console.log(this.owner.name+' paid '+this.salary+' coins')
 	}
 }

@@ -39,7 +39,7 @@
 			b_image: function() {
 				let ret = 'graphics/Buildings/';
 				switch (this.b.type) {
-					case 'lumber_mill':
+					case 'lumber mill':
 						ret += 'SawMill.png'
 						break
 					case 'farm':

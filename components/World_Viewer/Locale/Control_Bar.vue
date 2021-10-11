@@ -18,7 +18,7 @@
 			</div>
 			<div class="add_control control w_dropdown s_right">
 				<div class="dropdown">
-					<div class="s_item" @click="add('lumber_mill')">
+					<div class="s_item" @click="add('lumber mill')">
 							Lumber Mill
 					</div>
 					<div class="s_item" @click="add('farm')">
@@ -79,11 +79,12 @@
 				ds.meta.running = !ds.meta.running;
 			},
 			add(type) {
-				let build_requirements = w.btypes[type].build_requirements;
+				let btype =  w.btypes[type]
+				let build_requirements = btype.build_requirements;
 				let reqt = 'Lumber'
 				let reqnum = build_requirements['Lumber']
 				if (a.get_resources(reqt,reqnum)) {
-					w.objects[w.next] = new Building(0, type);
+					w.objects[w.next] = new Building(0, type, 2);
 				}
 			},	
 		},

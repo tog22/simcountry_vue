@@ -47,16 +47,16 @@
 			
 			// Create building types
 			
-			w.btypes['lumber_mill'] = new Building_Type('lumber_mill');
-			w.btypes['lumber_mill'].cap_name = 'Lumber Mill';
-			w.btypes['lumber_mill'].lc_name = 'lumber mill';
-			w.btypes['lumber_mill'].resource_inputs['Trees'] = 1;
-			w.btypes['lumber_mill'].outputs['Lumber'] = 1;
+			w.btypes['lumber mill'] = new Building_Type('lumber mill');
+			w.btypes['lumber mill'].cap_name = 'Lumber Mill';
+			w.btypes['lumber mill'].lc_name = 'lumber mill';
+			w.btypes['lumber mill'].resource_inputs['Trees'] = 1;
+			w.btypes['lumber mill'].outputs['Lumber'] = 1;
 			
 			w.btypes['farm'] = new Building_Type('farm');
 			w.btypes['farm'].cap_name = 'Farm';
 			w.btypes['farm'].lc_name = 'farm';
-			w.btypes['farm'].outputs['Food'] = 2;
+			w.btypes['farm'].outputs['Food'] = 3;
 			w.btypes['farm'].build_requirements['Lumber'] = 20;
 			w.btypes['farm'].resource_multipliers['soil quality'] = 1;
 			
@@ -66,31 +66,13 @@
 			
 			// Lumber mill
 			
-			w.objects[w.next] = new Building(w.cll, 'lumber_mill', 2, 'Donkbert');
+			w.objects[w.next] = new Building(w.cll, 'lumber mill', 2, 'Donkbert');
 			building = w.objects[w.latest]
 			building.inventory["Food"] = 2; 
 			// ↑ For starting lumber mill only
 			
 			// Farm
 			w.objects[w.next] = new Building(w.cll, 'farm', 1, 'Frank');
-			
-			
-			
-			
-			/*************************
-			**************************
-			**						**
-			**  ADD MENU FUNCTIONS  **
-			**						**
-			**************************
-			*************************/
-			
-			// bus.$on(
-			// 	'add',
-			// 	(data) => {
-			// 	  console.log(data);
-			// 	}
-			// );
 		}
 	}
 </script>
