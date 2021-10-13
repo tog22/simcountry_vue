@@ -62,6 +62,7 @@ export default class Person {
 		 
 		// 2) Otherwise, go to market with a maximum bid for food
 		this.locale.seek('Food', 1, this.coins, this)
+		if (this.name === 'Donkbert') console.log(this.name+' has '+this.coins+' coins, so bids this');
 	}
 	
 	eat_food() {
