@@ -133,5 +133,8 @@ export default class Building {
 	pay_people() {
 		this.owner.coins += this.salary
 		// console.log(this.owner.name+' paid '+this.salary+' coins')
+		
+		//  TODO: subtract coins from building when paying people
+		// 			(may require making at least lumber mills gain profit, first through a hardcoded profit from nowhere, then through an export market, which gets sold to only once all domestic bids have been gone through)
 	}
 }
