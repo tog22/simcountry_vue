@@ -7,6 +7,7 @@ export default class Building {
 	type
 	custom_name
 	inventory = {}
+	speed_auction_inventory = {}
 	owner
 	salary
 	coins

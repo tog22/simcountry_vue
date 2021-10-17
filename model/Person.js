@@ -6,6 +6,7 @@ export default class Person {
 	
 	coins
 	inventory = {}
+	speed_auction_inventory = {}
 	can_eat
 	
 	building_owned
