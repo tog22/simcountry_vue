@@ -39,7 +39,7 @@ export default class Person {
 		
 		// console.log(this.name+" has "+this.coins+' coins')
 		
-		if (this.building_owned.inventory["Food"] !== undefined) {
+		if (this.building_owned !== undefined && this.building_owned.inventory["Food"] !== undefined) {
 			if (this.building_owned.inventory["Food"] > 0) {
 				
 				this.inventory["Food"] += 1

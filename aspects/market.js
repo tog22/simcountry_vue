@@ -11,10 +11,6 @@ const Market = {
 		
 		// Otherwise…
 		return true
-	},
-	
-	resolve_bids: function (locale) {
-		// eventually move here
 	}
 }
 

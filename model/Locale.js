@@ -1,5 +1,8 @@
 import w from '@/model/World'
+
 import Market from '@/aspects/market'
+import A from '@/aspects/auction'
+import Person from '@/model/Person'
 
 export default class Locale {
 	oid
@@ -60,9 +63,10 @@ export default class Locale {
 			this.bids[good] = []
 		}
 		this.bids[good].push({
-			quantity: quantity, 
-			max_bid: max_bid,
-			buyer: buyer
+			quantity: 	quantity, 
+			max_bid: 	max_bid,
+			buyer: 		buyer,
+			filled:		false
 		});
 	}
 	
@@ -71,9 +75,9 @@ export default class Locale {
 			this.offers[good] = []
 		}
 		this.offers[good].push({
-			quantity: quantity, 
-			min_asking_price: min_asking_price,
-			seller: seller
+			quantity: 			quantity, 
+			min_asking_price: 	min_asking_price,
+			seller: 			seller
 		});
 	}
 	
@@ -83,11 +87,15 @@ export default class Locale {
 		}
 		
 		for (var good_name in this.bids) {
-			
 			this.bids[good_name].sort(this.rank_bids)
-			// Eventually move all the below logic here:
-			// auction = new Auction(this.bids[good_name], this.offers[good_name])
-			
+			let Auction = new A(good_name, this)
+			Auction.auction_good()
+		}
+		
+		let commented_out = true
+		while (commented_out === false) {
+			console.log('In commented_out loop')
+			commented_out = true
 			let auction_tracker = {
 				
 				do_new_round: 							true,
@@ -254,7 +262,7 @@ export default class Locale {
 		
 		if (offer.min_asking_price > bid.max_bid) {
 			
-			// ↓ We currently do anything with this
+			// ↓ We currently don't  anything with this
 			// TODO low - decide if we want to
 			auction_tracker.bid_price_has_fallen_below_offer_price = true
 			
@@ -376,20 +384,20 @@ export default class Locale {
 	
 	rank_bids(a, b) {
 		if ( a.max_bid > b.max_bid ){
-			return 1;
+			return -1;
 		}
 		if ( a.max_bid < b.max_bid ){
-			return -1;
+			return 1;
 		}
 		return 0;
 	}
 	
 	rank_offers(a, b) {
 		if ( a.min_asking_price < b.min_asking_price ){
-			return 1;
+			return -1;
 		}
 		if ( a.min_asking_price > b.min_asking_price ){
-			return -1;
+			return 1;
 		}
 		return 0;
 	}

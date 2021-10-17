@@ -66,13 +66,18 @@
 			
 			// Lumber mill
 			
+			w.objects[w.next] = new Building(w.cll, 'lumber mill', 14, 'Lavish Joe');
+			w.objects[w.next] = new Building(w.cll, 'lumber mill', 10, 'Rich Albert');
+			w.objects[w.next] = new Building(w.cll, 'lumber mill', 6, 'Comfortable Joshbert');
+			
 			w.objects[w.next] = new Building(w.cll, 'lumber mill', 2, 'Donkbert');
-			building = w.objects[w.latest]
-			building.inventory["Food"] = 2; 
+			// building = w.objects[w.latest]
+			// building.inventory["Food"] = 2; 
 			// ↑ For starting lumber mill only
 			
 			// Farm
 			w.objects[w.next] = new Building(w.cll, 'farm', 1, 'Frank');
+			
 		}
 	}
 </script>
