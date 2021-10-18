@@ -26,7 +26,7 @@ export default class Locale {
 	price_history = {}
 	
 	population
-	active_population
+	trend_population
 	
 	constructor() { 
 		this.oid = w.next;
@@ -34,7 +34,7 @@ export default class Locale {
 		w.latest++;
 		
 		this.population = 0
-		this.active_population = 0
+		this.trend_population = 0
 	}
 	
 	update() {

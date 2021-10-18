@@ -137,11 +137,6 @@ export default class A {
 						// l('Simulating buy, num coins before = '+bids[i].buyer_coins)
 					}
 					bids[i].buyer_coins -= (amount_to_buy * offer.min_asking_price)
-					log_x_if_y_is_z(
-						'& num coins after = '+bids[i].buyer_coins,
-						bids[i].buyer_name,
-						'Donkbert'
-					)
 					bids[i].quantity -= amount_to_buy
 					offer.quantity -= amount_to_buy
 					

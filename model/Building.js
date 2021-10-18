@@ -38,7 +38,7 @@ export default class Building {
 	
 	operate() {
 		
-		if (!this.owner.can_eat) {
+		if (!this.owner.active) {
 			return
 		}
 		

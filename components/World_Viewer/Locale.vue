@@ -80,7 +80,16 @@ export default {
 			let ret = ''
 			let locale_c = w.objects[this.locale_id]
 			for (var person of locale_c.people) {
-				ret += '<div><span style="font-size: 80%; margin-right: 0.7em">👤</span> '+person.name+', '+person.inventory["Food"]+' food, '+person.coins+' coins</div>'
+				if (person.days_inactive >= 10) {
+					continue // Eventually it'd be better to delete all references to the person (currently just locale.people and building.owner)
+				}
+				ret += '<div><span style="font-size: 80%; margin-right: 0.7em">👤</span> '+person.name;
+				if (!person.active) {
+					ret += ' (emigrating)</div>'
+				} else {
+					ret += ', '+person.inventory["Food"]+' food, '+person.coins+' coins</div>'
+				}
+				
 			}
 			return ret
 		}

@@ -7,11 +7,13 @@ let l = function (to_log) {
 export default class Person {
 	name
 	locale
+	id
 	
 	coins
-	inventory = {}
+	inventory 		= {}
 	manual_auction_inventory = {}
-	can_eat = true
+	active 			= true
+	days_inactive 	= 0
 	
 	building_owned
 	
@@ -26,10 +28,13 @@ export default class Person {
 		
 		this.locale = locale
 		locale.population += 1
+		locale.trend_population += 1
+		
+		this.id = locale.people.length
 		
 		this.coins = 10
 		this.inventory["Food"] = 10
-		this.can_eat = true
+		this.active = true
 				
 		if (building_to_own) {
 			this.building_owned = building_to_own
@@ -38,7 +43,11 @@ export default class Person {
 	
 	seek_food() {
 		
-		if (!this.can_eat) {
+		if (!this.active) {
+			this.days_inactive++
+			if (this.days_inactive === 10) {
+				this.locale.population -= 1
+			}
 			return
 		}
 		
@@ -82,11 +91,16 @@ export default class Person {
 	}
 	
 	eat_food() {
+		if (!this.active) {
+			return
+		}
+		
 		if (this.inventory["Food"] > 0) {
 			this.inventory["Food"] -= 1
-			this.can_eat = true
+			this.active = true
 		} else {
-			this.can_eat = false
+			this.active = false
+			this.locale.trend_population -= 1
 		}
 	}
 }
