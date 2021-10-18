@@ -55,12 +55,13 @@ export default class A {
 	auction_good () {
 	
 		// console.log('*** AUCTION ROUND ***')
-		
+		if (this.good === 'Food') {
+			// console.log('FOOOOOOOOOOD')
+		}
 		if (this.invalid_auction_check()) {
 			return
 		}
 		
-		this.correct_offer_quantities()
 		this.find_price_to_pay()
 		this.make_purchases()
 		
@@ -82,38 +83,9 @@ export default class A {
 		}
 	}
 	
-	
-	/*  PERFORMED BEFORE WE START PROCESSING OFFERS:
-	** 
-	**  Adjust the offer quantity down to match the
-	**  building's inventory, in case its gone down
-	**  since the offer, eg. from a farmer eating his
-	**  own food.
-	*/
-	correct_offer_quantities() {
-		let good = this.good
-		let good_name = good
-		let bids = this.locale.bids[good]
-		let offers = this.locale.offers[good]
-		
-		for (var bid of bids) {
-			
-			if (bid.quantity === 0) {
-				continue // …to the next bid
-			}
-			
-			for (var offer of offers) {
-				if (offer.seller.inventory[good] < offer.quantity) {
-					offer.seller.inventory[good] = offer.quantity
-				}
-			}
-			
-		}
-	}
-	
 	find_price_to_pay() {
 		
-		let l = function (tolog) { console.log(tolog) }
+		
 		
 		// Set and reset variables
 		this.clone_order_book()
@@ -205,7 +177,7 @@ export default class A {
 	
 	make_purchases() {
 		
-		let l = function (to_log) { console.log(to_log) }
+		
 		
 		let good = this.good
 		let good_name = good
@@ -232,7 +204,7 @@ export default class A {
 			for (var offer of offers) {
 				
 				if (bid.quantity <= 0) {
-					break // …out of considering offers
+					break // …out of // considering offers
 				}
 				
 				if (offer.quantity <= 0) {
@@ -257,9 +229,9 @@ export default class A {
 				// console.log('Farm now has '+offer.seller.inventory[good_name] )
 				// console.log('_____ END PURCHASE ______')
 				
-				// // l('bid & offer after A purchase')
-				// // l(bid)
-				// // l(offer)
+				// l('bid & offer after A purchase')
+				// l(bid)
+				// l(offer)
 				
 			}
 			

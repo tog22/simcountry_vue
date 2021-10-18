@@ -37,11 +37,12 @@ export default class Person {
 		// 1) Try getting food from the building they own
 		// 		(TODO - work out some adjustment, like seeing if market price is cheaper, and somehow letting this drive up agricultural wages and thus prices()
 		
-		// console.log(this.name+" has "+this.coins+' coins')
+		// // console.log(this.name+" has "+this.coins+' coins')
 		
 		if (this.building_owned !== undefined && this.building_owned.inventory["Food"] !== undefined) {
 			if (this.building_owned.inventory["Food"] > 0) {
 				
+				// console.log(this.building_owned.inventory["Food"])
 				this.inventory["Food"] += 1
 				if (this.building_owned.inventory["Food"] > 0) {
 					this.building_owned.inventory["Food"] -= 1
@@ -52,10 +53,8 @@ export default class Person {
 					this.coins -= this.building_owned.salary
 					this.building_owned.coins += this.building_owned.salary
 					// console.log('...paying 1 coin from his farm salary')
+					// console.log(this.building_owned.inventory["Food"])
 				}
-				
-				
-				
 				
 				return true
 			}
@@ -63,7 +62,9 @@ export default class Person {
 		 
 		// 2) Otherwise, go to market with a maximum bid for food
 		this.locale.seek('Food', 1, this.coins, this)
-		if (this.name === 'Donkbert') console.log(this.name+' has '+this.coins+' coins, so bids this');
+		if (this.name === 'Donkbert') {
+			// console.log(this.name+' has '+this.coins+' coins, so bids this');
+		}
 	}
 	
 	eat_food() {

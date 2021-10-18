@@ -56,7 +56,7 @@
 			w.btypes['farm'] = new Building_Type('farm');
 			w.btypes['farm'].cap_name = 'Farm';
 			w.btypes['farm'].lc_name = 'farm';
-			w.btypes['farm'].outputs['Food'] = 3;
+			w.btypes['farm'].outputs['Food'] = 5;
 			w.btypes['farm'].build_requirements['Lumber'] = 20;
 			w.btypes['farm'].resource_multipliers['soil quality'] = 1;
 			
