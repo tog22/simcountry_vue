@@ -4,6 +4,10 @@ import Market from '@/aspects/market'
 import A from '@/aspects/auction'
 import Person from '@/model/Person'
 
+let l = function (to_log) { 
+	console.log(to_log) 
+}
+
 export default class Locale {
 	oid
 	name
@@ -62,12 +66,14 @@ export default class Locale {
 		if (this.bids[good] === undefined) {
 			this.bids[good] = []
 		}
+		// l('seek max_bid arg = '+max_bid+'; results in:')
 		this.bids[good].push({
 			quantity: 	quantity, 
 			max_bid: 	max_bid,
 			buyer: 		buyer,
 			filled:		false
 		});
+		// l(this.bids[good][(this.bids[good].length - 1)])
 	}
 	
 	offer(good, quantity, min_asking_price, seller) {
@@ -85,10 +91,10 @@ export default class Locale {
 		
 		for (var good_name in this.offers) {
 			this.offers[good_name].sort(this.rank_offers)
-			// console.log(this.offers[good_name])
+			// l(this.offers[good_name])
 			this.correct_offer_quantity(good_name)
-			// console.log(this.offers[good_name])
-			// console.log('fDFFDFF')
+			// l(this.offers[good_name])
+			// l('fDFFDFF')
 		}
 		
 		
@@ -130,31 +136,31 @@ export default class Locale {
 			if (auction_tracker.highest_bid_so_far < offer.min_asking_price) {
 				// !!!!!!!
 				// TODO - MAYBE change this logic, cos highest_bid_so_far MAY get set needlessly high by expensive offers later on in the loop
-				// console.log('(NB: logic MAY need change) Highest_bid_so_far upped to offer.min_asking_price of '+ offer.min_asking_price)
+				// l('(NB: logic MAY need change) Highest_bid_so_far upped to offer.min_asking_price of '+ offer.min_asking_price)
 				auction_tracker.highest_bid_so_far = offer.min_asking_price
 			}
 			
 			if (offer.quantity <= 0) {
-				// console.log('_____ SKIP THIS LOOP (as this offer has no quantity available) _____')
+				// l('_____ SKIP THIS LOOP (as this offer has no quantity available) _____')
 				return // …out of person_bids_on_current_offer(); the same person then bids on the next offer.
 			}
 			
 			var amount_to_buy = (offer.quantity < bid.quantity) ? offer.quantity : bid.quantity;
 			
 			//////////////////////////////////
-			// console.log('_____ START LOOP ______')
-			// console.log('Farm starts loop with '+offer.seller.inventory[good_name] )
-			// console.log('Bidder starts loop with '+bid.buyer.coins)
-			// console.log('The farm has an offer to sell '+offer.quantity+' food, of which the buyer wants to buy '+amount_to_buy+', bid & offer deets below')
-			// console.log(bid)
-			// console.log(offer)
+			// l('_____ START LOOP ______')
+			// l('Farm starts loop with '+offer.seller.inventory[good_name] )
+			// l('Bidder starts loop with '+bid.buyer.coins)
+			// l('The farm has an offer to sell '+offer.quantity+' food, of which the buyer wants to buy '+amount_to_buy+', bid & offer deets below')
+			// l(bid)
+			// l(offer)
 			//////////////////////////////////
 			
 			/* ↓ Only match the last bid if buyer can afford the whole order
 					(It _might_ make sense to change this later - pos TODO ) */
 			if ((amount_to_buy * auction_tracker.highest_bid_so_far) > bid.buyer.coins) {
 				
-				// console.log(bid.buyer.name+" can't afford to keep bidding, pruning them")
+				// l(bid.buyer.name+" can't afford to keep bidding, pruning them")
 				
 				// ↓ Remove the bidder from future rounds
 				this.bids[good_name] = this.bids[good_name].filter(
@@ -184,13 +190,13 @@ export default class Locale {
 				) {
 					// …then provisionally note to do so
 					
-					// console.log('POTENTIAL increase in bid')
+					// l('POTENTIAL increase in bid')
 					auction_tracker.increase_highest_bid = true
 					// ↑ This is provisional because it gets reset to false if we're buying sufficient offer quantity from a later offer in the loop, then checked after the whole loop through all offers.
 					// ↓
 				}
 			} else {
-				// console.log('CANCEL potential increase in bid')
+				// l('CANCEL potential increase in bid')
 				auction_tracker.increase_highest_bid = false
 			}
 			
@@ -204,15 +210,15 @@ export default class Locale {
 			// bid.buyer.inventory[good_name] += amount_to_buy
 			// bid.buyer.coins -= offer.min_asking_price
 			// ////////
-			// // console.log('***Purchase made')
-			// // console.log('offer quant reduced by '+amount_to_buy,' leaving offer as follows:')
-			// // console.log(offer)
-			// // console.log(bid.buyer.name+' pays '+offer.min_asking_price+' coins, leaving him with '+bid.buyer.coins)
+			// // l('***Purchase made')
+			// // l('offer quant reduced by '+amount_to_buy,' leaving offer as follows:')
+			// // l(offer)
+			// // l(bid.buyer.name+' pays '+offer.min_asking_price+' coins, leaving him with '+bid.buyer.coins)
 			// if (bid.buyer.coins < 0) {
-			// 	// console.log("!!!!!! ERROR: negative money")
+			// 	// l("!!!!!! ERROR: negative money")
 			// }
-			// // console.log('Farm now has '+offer.seller.inventory[good_name] )
-			// // console.log('_____ END LOOP ______')
+			// // l('Farm now has '+offer.seller.inventory[good_name] )
+			// // l('_____ END LOOP ______')
 			/////////
 			
 			if (bid.quantity <= 0) {
@@ -230,13 +236,13 @@ export default class Locale {
 	}
 	
 	person_offers_price_premium (bid, offer, good_name, auction_tracker) {
-		// console.log('offering price premium if they can')
+		// l('offering price premium if they can')
 		auction_tracker.done_price_premium_round = true
 		// ↑ This is duplicated by every bidder in the round, but that's OK because it's only checked at the end of the round, at which point the do_purchasing_round flag is set for the start of the next round
 	}
 	
 	person_purchases_winning_bids (bid, offer, good_name, auction_tracker) {
-		// console.log('making purchases')
+		// l('making purchases')
 	}
 	
 	rank_bids(a, b) {

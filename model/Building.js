@@ -37,7 +37,11 @@ export default class Building {
 	}
 	
 	operate() {
-		// console.log(this.custom_name+' operating')
+		
+		if (!this.owner.can_eat) {
+			return
+		}
+		
 		this.pay_people()
 		
 		/********************

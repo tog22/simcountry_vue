@@ -1,13 +1,17 @@
 import w from '@/model/World'
 
+let l = function (to_log) { 
+	console.log(to_log) 
+}
+
 export default class Person {
 	name
 	locale
 	
 	coins
 	inventory = {}
-	speed_auction_inventory = {}
-	can_eat
+	manual_auction_inventory = {}
+	can_eat = true
 	
 	building_owned
 	
@@ -34,26 +38,30 @@ export default class Person {
 	
 	seek_food() {
 		
+		if (!this.can_eat) {
+			return
+		}
+		
 		// 1) Try getting food from the building they own
 		// 		(TODO - work out some adjustment, like seeing if market price is cheaper, and somehow letting this drive up agricultural wages and thus prices()
 		
-		// // console.log(this.name+" has "+this.coins+' coins')
+		// l(this.name+" has "+this.coins+' coins')
 		
 		if (this.building_owned !== undefined && this.building_owned.inventory["Food"] !== undefined) {
 			if (this.building_owned.inventory["Food"] > 0) {
 				
-				// console.log(this.building_owned.inventory["Food"])
+				// l(this.building_owned.inventory["Food"])
 				this.inventory["Food"] += 1
 				if (this.building_owned.inventory["Food"] > 0) {
 					this.building_owned.inventory["Food"] -= 1
 				}
-				// console.log(this.name+" eats food from his building's stockpile")
+				// l(this.name+" eats food from his building's stockpile")
 				
 				if (this.building_owned.type === 'farm') {
 					this.coins -= this.building_owned.salary
 					this.building_owned.coins += this.building_owned.salary
-					// console.log('...paying 1 coin from his farm salary')
-					// console.log(this.building_owned.inventory["Food"])
+					// l('...paying 1 coin from his farm salary')
+					// l(this.building_owned.inventory["Food"])
 				}
 				
 				return true
@@ -61,9 +69,15 @@ export default class Person {
 		}
 		 
 		// 2) Otherwise, go to market with a maximum bid for food
+		if (this.name === 'Donkbert') {
+			// l('Donkbert = ')
+			// l(this)
+			// l(this.coins)
+		}
 		this.locale.seek('Food', 1, this.coins, this)
 		if (this.name === 'Donkbert') {
-			// console.log(this.name+' has '+this.coins+' coins, so bids this');
+			// l(this.name+' has '+this.coins+' coins, so bids this');
+			// l(this.locale.bids["Food"][3])
 		}
 	}
 	

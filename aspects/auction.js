@@ -1,7 +1,16 @@
 import Market from '@/aspects/market'
 
-import _ from 'lodash'
+//import l from '@/aspects/debug'
+let l = function (to_log) { 
+	console.log(to_log) 
+}
 
+let log_x_if_y_is_z = function (to_log, y, z) { 
+	if (y === z) {
+		console.log('For '+z+':')
+		console.log(to_log) 
+	}
+}
 
 export default class A {
 	locale
@@ -43,10 +52,12 @@ export default class A {
 		let bids = this.locale.bids[this.good]
 		for (var i = 0; i < bids.length; i++) {
 			this.bids_clone.push({
-				quantity: 	bids[i].quantity, 
-				max_bid: 	bids[i].max_bid,
-				buyer: 		bids[i].buyer,
-				filled:		false
+				quantity: 		bids[i].quantity, 
+				max_bid: 		bids[i].max_bid,
+				buyer_coins: 	bids[i].buyer.coins,
+				buyer_name:		bids[i].buyer.name,
+				buyer_ref:		bids[i].buyer,
+				filled:			false
 			});
 		}
 		
@@ -54,17 +65,18 @@ export default class A {
 	
 	auction_good () {
 	
-		// console.log('*** AUCTION ROUND ***')
+		// l('*** AUCTION ROUND ***')
 		if (this.good === 'Food') {
-			// console.log('FOOOOOOOOOOD')
+			// l('FOOOOOOOOOOD')
 		}
 		if (this.invalid_auction_check()) {
 			return
 		}
 		
 		this.find_price_to_pay()
+		// l('~~~~~~~~ MAKE PURCHASES ~~~~~~~')
 		this.make_purchases()
-		
+		// l('*********** END AUCTION ROUND ***********')
 	}
 	
 	invalid_auction_check() {
@@ -98,7 +110,7 @@ export default class A {
 		// l('=== START FINDING PRICE ===')
 		for (var i in bids) {
 			// l('______________')
-			// l(bids[i].buyer.name+"'s bid "+i+' evaluated to find price =')
+			// l(bids[i].buyer_name+"'s bid "+i+' evaluated to find price =')
 			// l(bids[i])
 			for (var offer of offers) {
 				
@@ -118,10 +130,18 @@ export default class A {
 				
 				/* ↓ Buyer'd only buy if he can afford everything he wants to buy
 					(It _might_ make sense to change this later to let a building gain partial input inventory, though probably not. This is the cheapest offer, so there's no way it can get enough inputs.) */ 
-				if ((amount_to_buy * offer.min_asking_price) < bids[i].buyer.coins) {
+				if ((amount_to_buy * offer.min_asking_price) < bids[i].buyer_coins) {
 					
 					// Simulate buying by reducing the quantities in the clones of bids & offers
-					bids[i].buyer.coins -= (amount_to_buy * offer.min_asking_price)
+					if (bids[i].buyer_name === 'Donkbert') {
+						// l('Simulating buy, num coins before = '+bids[i].buyer_coins)
+					}
+					bids[i].buyer_coins -= (amount_to_buy * offer.min_asking_price)
+					log_x_if_y_is_z(
+						'& num coins after = '+bids[i].buyer_coins,
+						bids[i].buyer_name,
+						'Donkbert'
+					)
 					bids[i].quantity -= amount_to_buy
 					offer.quantity -= amount_to_buy
 					
@@ -143,15 +163,15 @@ export default class A {
 		this.no_offers_filled = false
 		
 		for (var i in bids) {
-			// console.log('bid '+i)
+			// l('bid '+i)
 			// l(bids[i])
 			if (!bids[i].filled) {
 				
-				// console.log('!bids[i].filled, for bid '+i)
+				// l('!bids[i].filled, for bid '+i)
 				this.unfilled_bid = i
 				
 				if (i === 0) {
-					// console.log('nof')
+					// l('nof')
 					this.no_offers_filled = true
 				}
 				
@@ -164,8 +184,8 @@ export default class A {
 		if (this.unfilled_bid && !this.no_offers_filled) {
 			
 			this.price_to_pay = bids[this.unfilled_bid].max_bid
-			// console.log('beaten max bid was:')
-			// console.log(this.price_to_pay)
+			// l('beaten max bid was:')
+			// l(this.price_to_pay)
 			
 			/* TODO - ideally, check whether the last filled bid can afford to go 1 over the unfilled_bid's max_bid. But this seems like complicated maths, probably.
 			let cheapest_filled_bid = bids[(this.unfilled_bid - 1)]
@@ -187,11 +207,14 @@ export default class A {
 		for (var i in bids) {
 			
 			let bid = bids[i]
+			if (bid.buyer.name === 'Donkbert') {
+				// l('{{{{{{{{{ Donkbert makes purchase }}}}}}')
+			}
 			// l(bid.buyer.name+' - seeing IF to purchase for bid '+i)
 			// l(bid)
 			
 			if (this.unfilled_bid && i === this.unfilled_bid) {
-				// console.log('not making purchase for bid '+i)
+				// l('not making purchase for bid '+i)
 				break // The below process would find there's no inventory anyway
 			} else {
 				bid.filled = true // may not be true until a later offer, but will be eventually
@@ -219,15 +242,15 @@ export default class A {
 				bid.buyer.inventory[good_name] += amount_to_buy
 				bid.buyer.coins -= this.price_to_pay
 				////////
-				// console.log('***Purchase made')
-				// console.log('offer quant reduced by '+amount_to_buy,' leaving offer as follows:')
-				// console.log(offer)
-				// console.log(bid.buyer.name+' pays '+this.price_to_pay+' coins, leaving him with '+bid.buyer.coins)
+				// l('***Purchase made')
+				// l('offer quant reduced by '+amount_to_buy,' leaving offer as follows:')
+				// l(offer)
+				// l(bid.buyer.name+' pays '+this.price_to_pay+' coins, leaving him with '+bid.buyer.coins)
 				if (bid.buyer.coins < 0) {
-					// console.log("!!!!!! ERROR: negative money")
+					// l("!!!!!! ERROR: negative money")
 				}
-				// console.log('Farm now has '+offer.seller.inventory[good_name] )
-				// console.log('_____ END PURCHASE ______')
+				// l('Farm now has '+offer.seller.inventory[good_name] )
+				// l('_____ END PURCHASE ______')
 				
 				// l('bid & offer after A purchase')
 				// l(bid)
