@@ -47,36 +47,36 @@
 			
 			// Create building types
 			
-			w.btypes['lumber mill'] = new Building_Type('lumber mill');
-			w.btypes['lumber mill'].cap_name = 'Lumber Mill';
-			w.btypes['lumber mill'].lc_name = 'lumber mill';
-			w.btypes['lumber mill'].resource_inputs['Trees'] = 1;
-			w.btypes['lumber mill'].outputs['Lumber'] = 1;
+			w.btypes['Lumber Mill'] = new Building_Type('Lumber Mill');
+			w.btypes['Lumber Mill'].cap_name = 'Lumber Mill';
+			w.btypes['Lumber Mill'].lc_name = 'Lumber Mill';
+			w.btypes['Lumber Mill'].resource_inputs['Trees'] = 1;
+			w.btypes['Lumber Mill'].outputs['Lumber'] = 1;
 			
-			w.btypes['farm'] = new Building_Type('farm');
-			w.btypes['farm'].cap_name = 'Farm';
-			w.btypes['farm'].lc_name = 'farm';
-			w.btypes['farm'].outputs['Food'] = 4;
-			w.btypes['farm'].build_requirements['Lumber'] = 20;
-			w.btypes['farm'].resource_multipliers['soil quality'] = 1;
+			w.btypes['Farm'] = new Building_Type('Farm');
+			w.btypes['Farm'].cap_name = 'Farm';
+			w.btypes['Farm'].lc_name = 'Farm';
+			w.btypes['Farm'].outputs['Food'] = 4;
+			w.btypes['Farm'].build_requirements['Lumber'] = 20;
+			w.btypes['Farm'].resource_multipliers['soil quality'] = 1;
 			
 			// Create buildings
 			
 			var building
 			
-			// Lumber mill
+			// Lumber Mill
 			
-			w.objects[w.next] = new Building(w.cll, 'lumber mill', 14, 'Lavish Joe');
-			w.objects[w.next] = new Building(w.cll, 'lumber mill', 10, 'Rich Albert');
-			w.objects[w.next] = new Building(w.cll, 'lumber mill', 6, 'Comfortable Joshbert');
+			// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 14, 'Lavish Joe');
+			// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 10, 'Rich Albert');
+			// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 6, 'Comfortable Joshbert');
 			
-			w.objects[w.next] = new Building(w.cll, 'lumber mill', 2, 'Donkbert');
+			w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 2, 'Donkbert');
 			// building = w.objects[w.latest]
 			// building.inventory["Food"] = 2; 
-			// ↑ For starting lumber mill only
+			// ↑ For starting Lumber Mill only
 			
 			// Farm
-			w.objects[w.next] = new Building(w.cll, 'farm', 1, 'Frank');
+			w.objects[w.next] = new Building(w.cll, 'Farm', 1, 'Frank');
 			
 		}
 	}

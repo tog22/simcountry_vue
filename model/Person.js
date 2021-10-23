@@ -66,7 +66,7 @@ export default class Person {
 				}
 				// l(this.name+" eats food from his building's stockpile")
 				
-				if (this.building_owned.type === 'farm') {
+				if (this.building_owned.type === 'Farm') {
 					this.coins -= this.building_owned.salary
 					this.building_owned.coins += this.building_owned.salary
 					// l('...paying 1 coin from his farm salary')
