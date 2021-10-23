@@ -25,25 +25,29 @@
 				</div>
 			</div>
 		</div>
-		<div id="shown_locale_info">
-			<!--
-			<div class="window">
-				<h2>
-					Resources 
-				</h2>
-				<div class="s_content">
-					<p>
-						🌲 {{locale.resources['Trees']}}
-					</p>
+		<div id="shown_locale_info" class="info_zone">
+			<div class="s_flex">
+				<div class="c_window">
+					<div class="window">
+						<h2>
+							People 
+						</h2>
+						<div class="s_content">
+							<div v-html="people_info" class="line_list">
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			-->
-			<div class="window">
-				<h2>
-					People 
-				</h2>
-				<div class="s_content">
-					<div v-html="people_info" class="line_list">
+				<div class="c_window">
+					<div class="window">
+						<h2>
+							Resources 
+						</h2>
+						<div class="s_content">
+							<p>
+							🌲 {{ /* locale.resources['Trees'] */ }}
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>

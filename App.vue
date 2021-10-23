@@ -1,5 +1,5 @@
 <template>
-	<div id="window">
+	<div id="viewport">
 		<World_Viewer :locale="0"/>
 		<Info_Zone/>
 	</div>
