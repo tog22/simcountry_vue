@@ -333,3 +333,8 @@ body > #viewport {
 .line_list {
 	font-size: 0.82em;
 }
+
+.icon_in_text {
+	font-size: 80%;
+	margin-right: 0.7em;
+}

@@ -44,9 +44,8 @@
 							Resources 
 						</h2>
 						<div class="s_content">
-							<p>
-							🌲 {{ /* locale.resources['Trees'] */ }}
-							</p>
+							<div v-html="resource_info" class="line_list">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -60,6 +59,7 @@ import w from '@/model/World.js'
 
 import Control_Bar from './Locale/Control_Bar.vue'
 import Building from './Locale/Building.vue'
+
 
 export default {
 	name: 'Locale',
@@ -87,7 +87,7 @@ export default {
 				if (person.days_inactive >= 10) {
 					continue // Eventually it'd be better to delete all references to the person (currently just locale.people and building.owner)
 				}
-				ret += '<div><span style="font-size: 80%; margin-right: 0.7em">👤</span> '+person.name;
+				ret += '<div><span class="icon_in_text">👤</span> '+person.name;
 				if (!person.active) {
 					ret += ' (emigrating)</div>'
 				} else {
@@ -96,6 +96,27 @@ export default {
 				
 			}
 			return ret
+		},
+		resource_info: function() {
+			let ret = ''
+			let locale_c = w.objects[this.locale_id]
+			for (var resource_name in locale_c.resources) {
+				
+				ret += '<div>'
+				
+				let item_type = w.items[resource_name]
+				if (item_type.icon) {
+					ret += '<span class="icon_in_text">'+item_type.icon+'</span> '
+				} else {
+					ret += item_type.name+': '
+				}
+				
+				ret += locale_c.resources[resource_name]
+				
+				ret += '</div>'
+			}
+			return ret
+			
 		}
 	},
 	created() {

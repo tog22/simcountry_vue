@@ -15,6 +15,7 @@
 	import Info_Zone from './components/Info_Zone.vue'
 	
 	import Locale from '@/model/Locale'
+	import Item from '@/model/Items'
 	import Building from '@/model/Building'
 	import Building_Type from '@/model/Building_Type'
 	import Person from '@/model/Person'
@@ -42,8 +43,38 @@
 			let locale = w.objects[w.cl];
 			locale.name = 'Murwood Forest';
 			locale.resources['Trees'] = 2000000;
+			locale.resources['Stone'] = 100;
 			locale.aspects['soil quality'] = 2; 
 			// ↑ 2 above = displayed quality of 100 = (x-1)*100 = (2-1)*100
+			
+			// Create item/resource types
+			
+			w.items['Trees'] = new Item('Trees','🌲')
+			w.items['Trees'].quantities = [
+				{
+					above: 1,
+					adjective: 'Sparse'
+				},
+				{
+					above: 100,
+					adjective: 'Copse'
+				},
+				{
+					above: 5000,
+					adjective: 'Small forest'
+				},
+				{
+					above: 50000,
+					adjective: 'Significant forest'
+				},
+				{
+					above: 500000,
+					adjective: 'Vast forest'
+				}
+			]
+			
+			w.items['Stone'] = new Item('Stone')
+			w.items['Stone'].quantities = [] // ie just show numbers
 			
 			// Create building types
 			
