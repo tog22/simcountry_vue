@@ -38,6 +38,7 @@
 						</div>
 					</div>
 				</div>
+				<!--
 				<div class="c_window">
 					<div class="window">
 						<h2>
@@ -49,6 +50,7 @@
 						</div>
 					</div>
 				</div>
+				-->
 			</div>
 		</div>
 	</div>

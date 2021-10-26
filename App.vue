@@ -91,11 +91,15 @@
 			w.btypes['Farm'].build_requirements['Lumber'] = 20;
 			w.btypes['Farm'].resource_multipliers['soil quality'] = 1;
 			
+			w.btypes['Quarry'] = new Building_Type('Quarry');
+			w.btypes['Quarry'].outputs['Stone'] = 1;
+			w.btypes['Quarry'].build_requirements['Lumber'] = 20;
+			
 			// Create buildings
 			
 			var building
 			
-			// Lumber Mill
+			// Lumber Mills
 			
 			// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 14, 'Lavish Joe');
 			// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 10, 'Rich Albert');
@@ -106,8 +110,8 @@
 			// building.inventory["Food"] = 2; 
 			// ↑ For starting Lumber Mill only
 			
-			// Farm
 			w.objects[w.next] = new Building(w.cll, 'Farm', 1, 'Frank');
+			w.objects[w.next] = new Building(w.cll, 'Quarry', 2, 'Martin');
 			
 		}
 	}

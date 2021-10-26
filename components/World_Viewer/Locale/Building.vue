@@ -39,7 +39,20 @@
 		},
 		computed: {
 			b_class: function() {
-				return 'building t '+this.b.type
+				let ret = 'building t '+this.b.type
+				
+				switch (this.b_type) {
+					case 'Lumber Mill':
+					case 'Farm':
+					case 'Quarry':
+					case 'Iron Mine':
+						break
+					default:
+						ret += ' generic'
+						break
+				}
+				
+				return ret
 			},
 			b_image: function() {
 				let ret = 'graphics/Buildings/';
@@ -50,7 +63,7 @@
 					case 'Farm':
 						ret += 'farm.png'
 						break
-					case 'Stone Mine':
+					case 'Quarry':
 					case 'Iron Mine':
 						ret += 'StoneMine.png'
 						break
@@ -64,9 +77,8 @@
 				switch (this.b.type) {
 					case 'Lumber Mill':
 					case 'Farm':
+					case 'Quarry':
 						return ''
-					case 'Stone Mine':
-						return 'Stone Mine'
 					case 'Iron Mine':
 						return 'Iron Mine'
 					default:
