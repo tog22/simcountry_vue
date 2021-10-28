@@ -1,7 +1,6 @@
 <template>
 	<div id="viewport">
 		<World_Viewer :locale="0"/>
-		<Info_Zone/>
 	</div>
 </template>
 
@@ -23,8 +22,7 @@
 	export default {
 		name: 'App',
 		components: {
-			World_Viewer,
-			Info_Zone
+			World_Viewer
 		},
 		created() {
 			

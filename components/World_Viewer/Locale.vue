@@ -27,30 +27,10 @@
 		</div>
 		<div id="shown_locale_info" class="info_zone">
 			<div class="s_flex">
-				<div class="c_window">
-					<div class="window">
-						<h2>
-							People 
-						</h2>
-						<div class="s_content">
-							<div v-html="people_info" class="line_list">
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--
-				<div class="c_window">
-					<div class="window">
-						<h2>
-							Resources 
-						</h2>
-						<div class="s_content">
-							<div v-html="resource_info" class="line_list">
-							</div>
-						</div>
-					</div>
-				</div>
-				-->
+				<template v-for="window in windows">
+					<Window :window="window.name" v-bind:key="'w_'+window.name" :locale_id=
+					"locale_id" />
+				</template>
 			</div>
 		</div>
 	</div>
@@ -61,13 +41,15 @@ import w from '@/model/World.js'
 
 import Control_Bar from './Locale/Control_Bar.vue'
 import Building from './Locale/Building.vue'
+import Window from './Window.vue'
 
 
 export default {
 	name: 'Locale',
 	components: {
 		Control_Bar,
-		Building
+		Building,
+		Window
 	},
 	props: {
 		locale_id: {
@@ -78,7 +60,11 @@ export default {
 	data() {
 		return {
 			building_ids: [],
-			locale: w.objects[this.locale_id]
+			locale: w.objects[this.locale_id],
+			windows: [
+				{name: 'People'},
+				{name: 'Resources'}
+			]
 		}
 	},
 	computed: {
