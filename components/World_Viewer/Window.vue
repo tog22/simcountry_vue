@@ -63,13 +63,15 @@ export default {
 				ret += '<div>'
 				
 				let item_type = w.items[resource_name]
-				if (item_type.icon) {
-					ret += '<span class="icon_in_text">'+item_type.icon+'</span> '
-				} else {
-					ret += item_type.name+': '
-				}
+				// if (item_type.icon) {
+				// 	ret += '<span class="icon_in_text">'+item_type.icon+'</span> '
+				// } else {
+				// 	ret += item_type.name+': '
+				// }
 				
 				ret += locale_c.resources[resource_name]
+				
+				ret += ' '+item_type.name.toLowerCase()
 				
 				ret += '</div>'
 			}
