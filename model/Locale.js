@@ -23,6 +23,7 @@ export default class Locale {
 	
 	population
 	active_population
+	trend_population
 	
 	constructor() { 
 		this.oid = w.next;
@@ -31,6 +32,7 @@ export default class Locale {
 		
 		this.population = 0
 		this.active_population = 0
+		this.trend_population = 0
 	}
 	
 	update() {
