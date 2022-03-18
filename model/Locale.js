@@ -92,159 +92,159 @@ export default class Locale {
 			this.bids[good_name].sort(this.rank_bids)
 			let Auction = new A(good_name, this)
 			Auction.auction_good()
-		}
-		
-		let commented_out = true
-		while (commented_out === false) {
-			console.log('In commented_out loop')
-			commented_out = true
-			let auction_tracker = {
-				
-				do_new_round: 							true,
-				
-				increase_highest_bid:					false,
-				do_new_bidding_round: 					true,
-				
-				do_price_premium_round: 				false,
-				done_price_premium_round:				false,
-				do_purchasing_round: 					false,
-				
-				bid_price_has_fallen_below_offer_price:	false,
-				original_offers_to_keep_quantities:		[...this.offers[good_name]],
-				highest_bid_so_far:	
-									this.offers[good_name][0].min_asking_price,
-			}
-			
-			// ↓ Check that there are both bids and offers
-			if (this.offers[good_name] === undefined) {
-				continue // …to the next good
-			}
-			if (
-				Market.quantity_is_0(this.bids[good_name]) 
-				|| 
-				Market.quantity_is_0(this.offers[good_name])
-			) {
-				continue
-			}
-			
-			console.log('→L1→→→→→ A LOOP THROUGH GOODS BEING BID ON')
-			let auction_round = 1
-			
-			// ↓ Repeat while (auction_tracker.do_new_round && auction_round < 20)
-			do { // L2 ////////
-				
-				// ↓ Presume there's no new bidding round after this one, unless we find that one is needed
-				auction_tracker.do_new_bidding_round = false;
-				
-				console.log('→→L2→→→→ AN INSTANCE OF DO LOOP THROUGH AN AUCTION ROUND')
-				// ↓ This auction round's loop through bidders 
-				for (var bid of this.bids[good_name]) { // L3 ////////
-					/* ↑ We loop through bids until either:
-							1) They fall below asking prices
-								(in which case we _end_ the bidding for loop)
-							OR
-							2) There's insufficient quantity to fill them 
-								(in which case we _restart_ the bidding for loop, via auction_tracker.do_new_bidding_round=true)
-								*/
-					
-					console.log('→→→L3→→→ A LOOP THROUGH BIDS')
-					console.log("…this loop's bidder being "+bid.buyer.name+', details below:')
-					console.log(bid.buyer)
-					
-					
-					if (bid.quantity === 0) {
-						continue // …to the next bid
-					}
-					
-					
-					
-					/***********************************
-					**								  **
-					**  THE DIFFERENT TYPES OF ROUND  **
-					**								  **
-					***********************************/
-					
-					// ↓ This bidder's loop through offers, in this auction round
-					for (var offer of this.offers[good_name]) { // L4 ////////
-						
-						console.log('____L4__ LOOP THROUGH OFFERS')
-						console.log('BUG POSSIBILITY - Bid may have been filtered out, here it is:')
-						console.log(bid)
-						
-						if (auction_round === 1) {
-							this.correct_offer_quantity(offer, good_name)
-						}
-						
-						if (auction_tracker.do_new_bidding_round) {
-							
-							this.person_bids_on_current_offer(bid, offer, good_name, auction_tracker)
-						}
-						
-						if (auction_tracker.do_price_premium_round) {
-							this.person_offers_price_premium(bid, offer, good_name, auction_tracker)
-						}
-						
-						if (auction_tracker.do_purchasing_round) {
-							this.person_purchases_winning_bids(bid, offer, good_name, auction_tracker)
-						}
-						
-						
-					} // END L4 for(offer) loop for a single bidder
-					console.log ('END L4 loop through offers on this bid')
-					
-					/**********************************/
-					
-					
-					
-					/* ↓ Increase bid if appropriate
-							(I.e. if, after this bidders's gone through all offers, they didn't find inventory left over after earlier bidders' purchases at the current highest bid */
-					if (auction_tracker.increase_highest_bid) {
-						
-						auction_tracker.do_new_bidding_round = true
-						auction_tracker.increase_highest_bid = false
-						// ↑ Reset, not actually needed in current logic, there in case logic changes
-						
-						console.log('CONFIRMED potential increase in bid, will get set after all bidders have finished this round')
-						
-					}
-				} // END L3 for(bid), going through 1 bidder in 1 auction round
-				console.log ('END 1 L3 loop through  1 bidder in 1 auction round')
-				
-				
-				// ↓ Work out which round to do next
-				if (auction_tracker.do_new_bidding_round) {
-					auction_tracker.highest_bid_so_far += 1
-					/* ↑ If it's a new bidding round, up the bid by just 1, to give everyone the chance to match it 
-						(Including early bidders, so they consistently get first dibs in case of equal bids.) */
-				} else if (!auction_tracker.done_price_premium_round) {
-					auction_tracker.do_price_premium_round = true
-				} else {
-					auction_tracker.do_purchasing_round
-				}
-				
-				// ↓ Record whether doing a next round
-				if (auction_tracker.do_new_bidding_round || auction_tracker.do_price_premium_round || auction_tracker.do_purchasing_round) {
-					auction_tracker.do_new_round = true;
-				} else {
-					auction_tracker.do_new_round = false;
-				}
-				
-				auction_round++
-				if (auction_round === 20) {
-					alert('Temporary measure to avoid infinite while loop triggered, by auction hitting a 20 round limit')
-				}
-				
-			} while (auction_tracker.do_new_round && auction_round < 20);
-			console.log ('END L2 do() loop through all loops through bids on this good (ie END AUCTION); auction_round ='+auction_round)
-			
-			// TODO: do `locale.price_history[good_name] = []` when creating the first building that outputs this good
-			// this.price_history[good_name].push({
-			// 	day:	w.day,
-			// 	price:	auction_tracker.highest_bid_so_far
-			// })
+			// For archive: this.old_style_auction()
 		}
 		
 		console.log('=== Bids resolved ===')
+	}
+	
+	old_style_auction() {
+		console.log('In disabled_old_style_auction, which is within the Level 1 loop `for (var good_name in this.bids)`')
+		disabled_old_style_auction = true
+		let auction_tracker = {
+			
+			do_new_round: 							true,
+			
+			increase_highest_bid:					false,
+			do_new_bidding_round: 					true,
+			
+			do_price_premium_round: 				false,
+			done_price_premium_round:				false,
+			do_purchasing_round: 					false,
+			
+			bid_price_has_fallen_below_offer_price:	false,
+			original_offers_to_keep_quantities:		[...this.offers[good_name]],
+			highest_bid_so_far:	
+								this.offers[good_name][0].min_asking_price,
+		}
+		
+		// ↓ Check that there are both bids and offers
+		if (this.offers[good_name] === undefined) {
+			continue // …to the next good
+		}
+		if (
+			Market.quantity_is_0(this.bids[good_name]) 
+			|| 
+			Market.quantity_is_0(this.offers[good_name])
+		) {
+			continue
+		}
+		
+		console.log('→L1→→→→→ A LOOP THROUGH GOODS BEING BID ON')
+		let auction_round = 1
+		
+		// ↓ Repeat while (auction_tracker.do_new_round && auction_round < 20)
+		do { // L2 ////////
+			
+			// ↓ Presume there's no new bidding round after this one, unless we find that one is needed
+			auction_tracker.do_new_bidding_round = false;
+			
+			console.log('→→L2→→→→ AN INSTANCE OF DO LOOP THROUGH AN AUCTION ROUND')
+			// ↓ This auction round's loop through bidders 
+			for (var bid of this.bids[good_name]) { // L3 ////////
+				/* ↑ We loop through bids until either:
+						1) They fall below asking prices
+							(in which case we _end_ the bidding for loop)
+						OR
+						2) There's insufficient quantity to fill them 
+							(in which case we _restart_ the bidding for loop, via auction_tracker.do_new_bidding_round=true)
+							*/
+				
+				console.log('→→→L3→→→ A LOOP THROUGH BIDS')
+				console.log("…this loop's bidder being "+bid.buyer.name+', details below:')
+				console.log(bid.buyer)
+				
+				
+				if (bid.quantity === 0) {
+					continue // …to the next bid
+				}
+				
+				
+				
+				/***********************************
+				**								  **
+				**  THE DIFFERENT TYPES OF ROUND  **
+				**								  **
+				***********************************/
+				
+				// ↓ This bidder's loop through offers, in this auction round
+				for (var offer of this.offers[good_name]) { // L4 ////////
+					
+					console.log('____L4__ LOOP THROUGH OFFERS')
+					console.log('BUG POSSIBILITY - Bid may have been filtered out, here it is:')
+					console.log(bid)
+					
+					if (auction_round === 1) {
+						this.correct_offer_quantity(offer, good_name)
+					}
+					
+					if (auction_tracker.do_new_bidding_round) {
+						
+						this.person_bids_on_current_offer(bid, offer, good_name, auction_tracker)
+					}
+					
+					if (auction_tracker.do_price_premium_round) {
+						this.person_offers_price_premium(bid, offer, good_name, auction_tracker)
+					}
+					
+					if (auction_tracker.do_purchasing_round) {
+						this.person_purchases_winning_bids(bid, offer, good_name, auction_tracker)
+					}
+					
+					
+				} // END L4 for(offer) loop for a single bidder
+				console.log ('END L4 loop through offers on this bid')
+				
+				/**********************************/
+				
+				
+				
+				/* ↓ Increase bid if appropriate
+						(I.e. if, after this bidders's gone through all offers, they didn't find inventory left over after earlier bidders' purchases at the current highest bid */
+				if (auction_tracker.increase_highest_bid) {
+					
+					auction_tracker.do_new_bidding_round = true
+					auction_tracker.increase_highest_bid = false
+					// ↑ Reset, not actually needed in current logic, there in case logic changes
+					
+					console.log('CONFIRMED potential increase in bid, will get set after all bidders have finished this round')
+					
+				}
+			} // END L3 for(bid), going through 1 bidder in 1 auction round
+			console.log ('END 1 L3 loop through  1 bidder in 1 auction round')
+			
+			
+			// ↓ Work out which round to do next
+			if (auction_tracker.do_new_bidding_round) {
+				auction_tracker.highest_bid_so_far += 1
+				/* ↑ If it's a new bidding round, up the bid by just 1, to give everyone the chance to match it 
+					(Including early bidders, so they consistently get first dibs in case of equal bids.) */
+			} else if (!auction_tracker.done_price_premium_round) {
+				auction_tracker.do_price_premium_round = true
+			} else {
+				auction_tracker.do_purchasing_round
+			}
+			
+			// ↓ Record whether doing a next round
+			if (auction_tracker.do_new_bidding_round || auction_tracker.do_price_premium_round || auction_tracker.do_purchasing_round) {
+				auction_tracker.do_new_round = true;
+			} else {
+				auction_tracker.do_new_round = false;
+			}
+			
+			auction_round++
+			if (auction_round === 20) {
+				alert('Temporary measure to avoid infinite while loop triggered, by auction hitting a 20 round limit')
+			}
+			
+		} while (auction_tracker.do_new_round && auction_round < 20);
+		console.log ('END L2 do() loop through all loops through bids on this good (ie END AUCTION); auction_round ='+auction_round)
+		
+		// TODO: do `locale.price_history[good_name] = []` when creating the first building that outputs this good
+		// this.price_history[good_name].push({
+		// 	day:	w.day,
+		// 	price:	auction_tracker.highest_bid_so_far
+		// })
 	}
 	
 	correct_offer_quantity(offer, good_name) {
