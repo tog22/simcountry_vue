@@ -73,15 +73,35 @@
 /* !• BUILDINGS */
 
 .building_container {
-	margin-right: 25px;
+	margin-left: 25px;
 }
 
-.lumber mill img {
-	height: 78px;
+.building {
+	display: flex;
+	flex-direction: column;
+}
+
+.building .s_graphic {
+	text-align: center;
+	height: 100px;
+	
+}
+
+.building .s_label {
+	text-align: center;
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/* !•• SPECIFIC BUILDINGS */
+
+.Lumber.Mill img {
+	height: 58px;
 	padding-top: 25px;
 }
 
-.farm img {
+.Farm img {
 	width: 112px;
-	padding-top: 2px;
+	padding-top: 6px;
 }

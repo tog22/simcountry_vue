@@ -10,6 +10,9 @@ new Vue({
 			btypes: {
 				// Building types go here
 			},
+			items: {
+				// Item types go here	
+			},
 			next: 0,	// Next object id
 			latest: -1,		// Latest object id
 			cl: null,	// Current locale, to supercede cll & cvl

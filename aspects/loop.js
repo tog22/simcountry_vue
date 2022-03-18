@@ -11,7 +11,7 @@ export default function start_loop() {
 
 export function loop() {
 	update();
-	setTimeout(loop, 2000);
+	setTimeout(loop, 500);
 }
 
 function update() {

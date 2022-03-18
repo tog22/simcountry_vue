@@ -13,7 +13,7 @@ new Vue({
 		return {
 			test: "Initial value for the data store's test property",
 			meta: {
-				running: true
+				running: false
 			}
 		}
 	},

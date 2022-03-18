@@ -25,27 +25,12 @@
 				</div>
 			</div>
 		</div>
-		<div id="shown_locale_info">
-			<!--
-			<div class="window">
-				<h2>
-					Resources 
-				</h2>
-				<div class="s_content">
-					<p>
-						🌲 {{locale.resources['Trees']}}
-					</p>
-				</div>
-			</div>
-			-->
-			<div class="window">
-				<h2>
-					People 
-				</h2>
-				<div class="s_content">
-					<div v-html="people_info" class="line_list">
-					</div>
-				</div>
+		<div id="shown_locale_info" class="info_zone">
+			<div class="s_flex">
+				<template v-for="window in windows">
+					<Window :window="window.name" v-bind:key="'w_'+window.name" :locale_id=
+					"locale_id" />
+				</template>
 			</div>
 		</div>
 	</div>
@@ -56,12 +41,15 @@ import w from '@/model/World.js'
 
 import Control_Bar from './Locale/Control_Bar.vue'
 import Building from './Locale/Building.vue'
+import Window from './Window.vue'
+
 
 export default {
 	name: 'Locale',
 	components: {
 		Control_Bar,
-		Building
+		Building,
+		Window
 	},
 	props: {
 		locale_id: {
@@ -72,7 +60,11 @@ export default {
 	data() {
 		return {
 			building_ids: [],
-			locale: w.objects[this.locale_id]
+			locale: w.objects[this.locale_id],
+			windows: [
+				{name: 'People'},
+				{name: 'Resources'}
+			]
 		}
 	},
 	computed: {
@@ -80,9 +72,39 @@ export default {
 			let ret = ''
 			let locale_c = w.objects[this.locale_id]
 			for (var person of locale_c.people) {
-				ret += '<div><span style="font-size: 80%; margin-right: 0.7em">👤</span> '+person.name+', '+person.inventory["Food"]+' food, '+person.coins+' coins</div>'
+				if (person.days_inactive >= 10) {
+					continue // Eventually it'd be better to delete all references to the person (currently just locale.people and building.owner)
+				}
+				ret += '<div><span class="icon_in_text">👤</span> '+person.name;
+				if (!person.active) {
+					ret += ' (emigrating)</div>'
+				} else {
+					ret += ', '+person.inventory["Food"]+' food, '+person.coins+' coins</div>'
+				}
+				
 			}
 			return ret
+		},
+		resource_info: function() {
+			let ret = ''
+			let locale_c = w.objects[this.locale_id]
+			for (var resource_name in locale_c.resources) {
+				
+				ret += '<div>'
+				
+				let item_type = w.items[resource_name]
+				if (item_type.icon) {
+					ret += '<span class="icon_in_text">'+item_type.icon+'</span> '
+				} else {
+					ret += item_type.name+': '
+				}
+				
+				ret += locale_c.resources[resource_name]
+				
+				ret += '</div>'
+			}
+			return ret
+			
 		}
 	},
 	created() {

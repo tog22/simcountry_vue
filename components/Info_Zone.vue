@@ -1,5 +1,5 @@
 <template>
-	<div id="info_zone_global">
+	<div id="info_zone_global" class="info_zone">
 		<div 
 			v-for="id in open_buildings"
 			:key="'info_zone_b'+id"

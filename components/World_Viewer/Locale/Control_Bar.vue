@@ -18,10 +18,10 @@
 			</div>
 			<div class="add_control control w_dropdown s_right">
 				<div class="dropdown">
-					<div class="s_item" @click="add('lumber mill')">
+					<div class="s_item" @click="add('Lumber Mill')">
 							Lumber Mill
 					</div>
-					<div class="s_item" @click="add('farm')">
+					<div class="s_item" @click="add('Farm')">
 						Farm
 					</div>
 				</div>
@@ -68,7 +68,13 @@
 				return w.day
 			},
 			population: function() {
-				return w.objects[this.locale_id].population
+				let pop = w.objects[this.locale_id].population
+				let trend_pop = w.objects[this.locale_id].trend_population
+				if (trend_pop != pop) {
+					return pop+', heading to '+trend_pop
+				} else {
+					return pop
+				}
 			},
 			name: function() {
 				return w.objects[this.locale_id].name
