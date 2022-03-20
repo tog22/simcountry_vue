@@ -1,8 +1,10 @@
 export default class Item {
 	name
+	type
 	icon
 	quantities = []
 	/* ↑ Example:
+		[
 			{
 				above: 1,
 				adjective: 'Sparse'
@@ -11,21 +13,17 @@ export default class Item {
 				above: 100,
 				adjective: 'A copse of'
 			}
+		]
 	*/
 	
-	desired = [
+	levels = {}
+	/* ↑ Example:
 		{
-			luxury_level: 'example', // minimal, basic, moderate, high
-			quantity: 1,	// 1 item…
-			frequency: 10	// …every 10 days
+			1: 'Coarse clothing',
+			2: 'Comfortable clothing',
+			3: 'Ornate clothing'
 		}
-	]
-	levels = [
-		{
-			luxury_level: 'example', // minimal, basic, moderate, high
-			name: 'Coarse clothing'
-		}
-	]
+	*/
 	
 	constructor(name, icon = null)
 	{
