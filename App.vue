@@ -93,6 +93,12 @@
 			w.btypes['Quarry'].outputs['Stone'] = 1;
 			w.btypes['Quarry'].build_requirements['Lumber'] = 20;
 			
+			w.btypes['Stone Toolmaker'] = new Building_Type('Stone Toolmaker');
+			w.btypes['Stone Toolmaker'].inputs['Stone'] = 1;
+			w.btypes['Stone Toolmaker'].outputs['Stone Tools'] = 1;
+			w.btypes['Stone Toolmaker'].build_requirements['Lumber'] = 20;
+			
+			
 			// Create buildings
 			
 			var building
