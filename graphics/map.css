@@ -94,6 +94,14 @@
 	text-transform: uppercase;
 }
 
+.building.hide_label .s_label {
+	display: none;
+}
+
+.building.hide_label:hover .s_label {
+	display: block;
+}
+
 /* !•• SPECIFIC BUILDINGS */
 
 .Lumber.Mill img {

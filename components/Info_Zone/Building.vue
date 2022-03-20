@@ -33,10 +33,12 @@ export default {
 	},
 	data() {
 		let b = w.objects[this.id]
+		let btype = w.btypes[b.type]
 		return {
 			b:				b,
 			custom_name:	b.custom_name,
-			type: 			b.type
+			type: 			b.type,
+			graphic:		btype.graphic
 		};
 	},
 	computed: {

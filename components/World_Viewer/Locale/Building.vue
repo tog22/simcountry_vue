@@ -23,8 +23,10 @@
 		},
 		data() {
 			let b = w.objects[this.id]
+			let btype = w.btypes[b.type]
 			return {
-				b: b
+				b:			b,
+				btype:		btype
 			}	
 		},
 		methods: {
@@ -39,51 +41,23 @@
 		},
 		computed: {
 			b_class: function() {
-				let ret = 'building t '+this.b.type
+				let ret = 'building t '+this.btype.name
 				
-				switch (this.b_type) {
-					case 'Lumber Mill':
-					case 'Farm':
-					case 'Quarry':
-					case 'Iron Mine':
-						break
-					default:
-						ret += ' generic'
-						break
+				if (this.btype.labelled) {
+					ret += ' show_label'
+				} else {
+					ret += ' hide_label '
 				}
 				
 				return ret
 			},
 			b_image: function() {
 				let ret = 'graphics/Buildings/';
-				switch (this.b.type) {
-					case 'Lumber Mill':
-						ret += 'SawMill.png'
-						break
-					case 'Farm':
-						ret += 'farm.png'
-						break
-					case 'Quarry':
-					case 'Iron Mine':
-						ret += 'StoneMine.png'
-						break
-					default:
-						ret += 'cottage_generic.png'
-						break
-				}
+				ret += this.btype.graphic
 				return ret;
 			},
 			b_label: function() {
-				switch (this.b.type) {
-					case 'Lumber Mill':
-					case 'Farm':
-					case 'Quarry':
-						return ''
-					case 'Iron Mine':
-						return 'Iron Mine'
-					default:
-						return this.b.type
-				}
+				return this.btype.name
 			}
 		},
 	}
