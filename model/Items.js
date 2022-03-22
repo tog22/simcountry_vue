@@ -1,3 +1,5 @@
+import jQuery from 'jquery'
+
 export default class Item {
 	name
 	type
@@ -25,9 +27,16 @@ export default class Item {
 		}
 	*/
 	
-	constructor(name, icon = null)
+	constructor(name, type = 'generic', icon = null)
 	{
 		this.name = name;
-		if (icon) this.icon = icon;
+		this.type = type;
+		if (!icon) {
+			this.icon = '<span class="icon s_emoji">*️⃣</span>'
+		} else if (icon.includes('.')) {
+			this.icon = '<span class="icon s_image"><img src="graphics/items/'+icon+'" /></span>';
+		} else if (icon) {
+			this.icon = '<span class="icon s_emoji">*️⃣</span>'
+		}
 	}
 }
