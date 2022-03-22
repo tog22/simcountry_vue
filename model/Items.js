@@ -18,7 +18,7 @@ export default class Item {
 		]
 	*/
 	
-	levels = {}
+	luxury_levels = {}
 	/* ↑ Example:
 		{
 			1: 'Coarse clothing',
@@ -26,6 +26,8 @@ export default class Item {
 			3: 'Ornate clothing'
 		}
 	*/
+	
+	properties = {}
 	
 	constructor(name, type = 'generic', icon = null)
 	{

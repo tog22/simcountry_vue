@@ -32,7 +32,7 @@ export default function import_items() {
 	w.items['Stone'] = new Item('Stone', 'resource', 'stone.png')
 	w.items['Stone'].quantities = [] // ie just show numbers
 	
-	w.items['Wheat'] = new Item('Wheat', 'food')
+	let wheat = w.items['Wheat'] = new Item('Wheat', 'food')
 	w.items['Bread'] = new Item('Bread', 'food')
 	w.items['Apples'] = new Item('Apples', 'food')
 	w.items['Grapes'] = new Item('Grapes', 'food')

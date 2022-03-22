@@ -11,7 +11,10 @@ new Vue({
 				// Building types go here
 			},
 			items: {
-				// Item types go here	
+				// (Particular types of) items go here	
+			},
+			types: {
+				// General types of items go here
 			},
 			next: 0,	// Next object id
 			latest: -1,		// Latest object id
