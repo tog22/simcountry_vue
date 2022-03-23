@@ -3,7 +3,7 @@ SimCountry
 
 See and shape the economy of a growing country (or settlement, or colony, or region, or world, or any other community)
 
-##Installation
+## Installation
 
 SimCountry is built on Vue 2.
 

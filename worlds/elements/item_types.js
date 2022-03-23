@@ -1,13 +1,23 @@
 // Create item/resource types
 
 import w from '@/model/World'
-import Item from '@/model/Item_Types'
+import Type from '@/model/Item_Type'
 
 export default function import_item_types() {
 	
-	w.item_types['food'] = new Item_Type('food')
-	w.item_types['food'].properties = [
-		'nutrition_value',
-		'luxury_level'
-	]
+	w.types['resource'] = new Type(
+		'resource', 
+		{
+			origin: {} // 'natural'/'crafted'
+		}
+	)
+	
+	w.types['food'] = new Type(
+		'food',
+		{
+			nutrition: {}, // num
+			luxury: {} // num
+		}
+	)
+	
 }

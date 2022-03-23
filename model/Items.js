@@ -1,4 +1,6 @@
 import jQuery from 'jquery'
+import w from '@/model/World'
+// import vw from '@/model/VanillaWorld'
 
 export default class Item {
 	name
@@ -18,21 +20,27 @@ export default class Item {
 		]
 	*/
 	
-	luxury_levels = {}
-	/* ↑ Example:
-		{
-			1: 'Coarse clothing',
-			2: 'Comfortable clothing',
-			3: 'Ornate clothing'
-		}
-	*/
-	
 	properties = {}
 	
 	constructor(name, type = 'generic', icon = null)
 	{
+		
 		this.name = name;
 		this.type = type;
+		
+		// Old debugging:
+		// console.log(w)
+		// console.log('< wubba world || vw >')
+		// console.log(vw)
+		
+		let type_properties = w.types[type].properties
+		
+		for (var name_of_prop in type_properties) {
+			this.properties[name_of_prop] = null
+		}
+		
+		// Set icon
+		
 		if (!icon) {
 			this.icon = '<span class="icon s_emoji">*️⃣</span>'
 		} else if (icon.includes('.')) {

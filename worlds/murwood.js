@@ -12,11 +12,13 @@ import Building from '@/model/Building'
 import Building_Type from '@/model/Building_Type'
 import Person from '@/model/Person'
 
-import import_items from './elements/items'
-import import_building_types from './elements/buildings'
+import import_items from '@/worlds/elements/items'
+import import_item_types from '@/worlds/elements/item_types'
+import import_building_types from '@/worlds/elements/buildings'
 
 export default function create_world() {
 	
+	import_item_types()
 	import_items()
 	import_building_types()
 	
