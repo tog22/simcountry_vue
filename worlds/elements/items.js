@@ -4,10 +4,9 @@ import w from '@/model/World'
 import Item from '@/model/Items'
 
 export default function import_items() {
-
 	
-	w.items['Trees'] = new Item('Trees', 'resource', '🌲')
-	w.items['Trees'].quantities = [
+	let trees = w.items['Trees'] = new Item('Trees', 'resource', '🌲');
+	trees.quantities = [
 		{
 			above: 1,
 			adjective: 'Sparse'
@@ -30,9 +29,16 @@ export default function import_items() {
 		}
 	]
 	
-	let stone = w.items['Stone'] = new Item('Stone', 'resource', 'stone.png')
+	let lumber = w.items['Lumber'] = new Item('Lumber', 'resource', '🪵');
+	{
+		lumber.quantities = [] // ie just show numbers
+		lumber.units = ' tons'
+	}
+	
+	let stone = w.items['Stone'] = new Item('Stone', 'resource', 'stone.png');
 	{
 		stone.quantities = [] // ie just show numbers
+		stone.units = ' tons'
 	}
 	
 	let oats = w.items['Oats'] = new Item('Oats', 'food', '🌾');
