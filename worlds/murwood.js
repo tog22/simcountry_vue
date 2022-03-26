@@ -16,6 +16,8 @@ import import_items from '@/worlds/elements/items'
 import import_item_types from '@/worlds/elements/item_types'
 import import_building_types from '@/worlds/elements/buildings'
 
+import testing_values from '@/worlds/testing_values'
+
 export default function create_world() {
 	
 	import_item_types()
@@ -42,14 +44,15 @@ export default function create_world() {
 	
 	// Lumber Mills
 	
-	// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 14, 'Lavish Joe');
-	// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 10, 'Rich Albert');
-	// w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 6, 'Comfortable Joshbert');
-	
-	w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 2, 'Donkbert');
-	// building = w.objects[w.latest]
-	// building.inventory["Food"] = 2; 
+	let pioneer_lumberjacks = w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 2, 'Donkbert');
+	pioneer_lumberjacks.inventory["Food"] = 2; 
 	// ↑ For starting Lumber Mill only
+	
+	if (testing_values.lumberjack_overload) {
+		w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 14, 'Lavish Joe');
+		w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 10, 'Rich Albert');
+		w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 6, 'Comfortable Joshbert');
+	}
 	
 	w.objects[w.next] = new Building(w.cll, 'Farm', 1, 'Frank');
 	w.objects[w.next] = new Building(w.cll, 'Quarry', 2, 'Martin');

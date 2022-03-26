@@ -7,17 +7,23 @@
 
 import Vue from 'vue';
 
+import testing_values from '@/worlds/testing_values'
+
 const ds = 
 new Vue({
 	data () {
 		return {
 			test: "Initial value for the data store's test property",
 			meta: {
-				running: false
+				running: true
 			}
 		}
 	},
 });
+
+if (testing_values.start_paused) {
+	ds.meta.running = false
+}
 
 export default ds;
 

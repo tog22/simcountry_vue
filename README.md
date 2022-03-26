@@ -16,3 +16,18 @@ These ones aren't used as of writing, but may be helpful additions:
 * v-menu-multi-level
 * @innologica/vue-dropdown-menu
 * lodash
+
+## Files not in this repository, to recreate 
+
+You'll need to recreate these files.
+
+### worlds/testing_values.js
+
+````
+let testing_values = {
+	start_paused:			false,
+	lumberjack_overload:	true
+}
+
+export default testing_values
+````
