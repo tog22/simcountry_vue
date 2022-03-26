@@ -54,7 +54,7 @@ export default class Locale {
 			building.operate()
 		}
 		for (var person of this.people) {
-			person.seek_food()
+			// person.seek_food()
 		}
 		this.resolve_bids()
 		for (var person of this.people) {
