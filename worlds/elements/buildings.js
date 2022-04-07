@@ -30,7 +30,7 @@ export default function import_building_types() {
 	{
 		farm.name = 'Farm'
 		farm.graphic = 'farm.png'
-		farm.outputs['Oats'] = 4;
+		farm.outputs['Food'] = 4;
 		farm.build_requirements['Lumber'] = 20;
 		farm.resource_multipliers.locale_aspects = {}
 		farm.resource_multipliers.locale_aspects['soil quality'] = 1; // todo: implement this
@@ -44,7 +44,7 @@ export default function import_building_types() {
 	
 	let quarry = w.btypes['Quarry'] = new Building_Type('Quarry');
 	{
-		w.btypes['Quarry'].name = 'Quarry'
+			w.btypes['Quarry'].name = 'Quarry'
 		w.btypes['Quarry'].graphic = 'StoneMine.png'
 		w.btypes['Quarry'].outputs['Stone'] = 1;
 		w.btypes['Quarry'].build_requirements['Lumber'] = 20;

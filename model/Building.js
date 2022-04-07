@@ -1,6 +1,5 @@
 import w from '@/model/World'
 import Person from '@/model/Person'
-import has from 'lodash/has'
 
 export default class Building {
 	oid
@@ -106,28 +105,7 @@ export default class Building {
 			// Add the output resources to the business
 			for (var output_name in outputs_to_make) {
 				if (this.inventory[output_name]) {
-					
-					// 🥗 If it's food, add it to  this.inventory as such, with the inventory for specific type as a subelement in that array
-					lo(w.items[output_name])
-					if (w.items[output_name].type === 'food') {
-						
-						if ( has(this.inventory, 'food') ) {
-							
-							this.inventory['food'] = {}
-							this.inventory['food'][output_name] += outputs_to_make[output_name];
-							
-						} else {
-							
-							this.inventory['food'][output_name] += outputs_to_make[output_name];
-							
-						}
-						
-					} else {
-						this.inventory[output_name] += outputs_to_make[output_name];
-					}
-					
-					lo(this.inventory)
-					
+					this.inventory[output_name] += outputs_to_make[output_name];
 				} else {
 					this.inventory[output_name] = outputs_to_make[output_name];
 				}
@@ -165,9 +143,3 @@ export default class Building {
 		// 			(may require making at least lumber mills gain profit, first through a hardcoded profit from nowhere, then through an export market, which gets sold to only once all domestic bids have been gone through)
 	}
 }
-
-let l = function (to_log) { 
-	console.log(to_log) 
-}
-
-let lo = l
