@@ -11,7 +11,8 @@ var index = {
 				'The Donk'
 			]
 		}
-	}
+	},
+	foods:		{}
 }
 
 export default index

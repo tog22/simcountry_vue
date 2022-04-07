@@ -1,5 +1,6 @@
 import jQuery from 'jquery'
 import w from '@/model/World'
+import index from '@/worlds/index'
 // import vw from '@/model/VanillaWorld'
 
 export default class Item {
@@ -48,5 +49,16 @@ export default class Item {
 		} else if (icon) {
 			this.icon = '<span class="icon s_emoji">*️⃣</span>'
 		}
+		
+		// Create indexes, for things that need them
+		
+		switch (type) {
+			case 'food':
+				index.food[name] = true
+				break;
+			default:
+				break;
+		}
+		
 	}
 }

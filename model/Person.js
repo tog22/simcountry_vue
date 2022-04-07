@@ -1,4 +1,5 @@
 import w from '@/model/World'
+import index from '@/worlds/index'
 
 let l = function (to_log) { 
 	console.log(to_log) 
@@ -89,6 +90,16 @@ export default class Person {
 			// l(this.locale.bids["Food"][3])
 		}
 	}
+	
+	
+	search_inventory_for_food(inventory) {
+		
+		for (var item in inventory) {
+			// check if index.food[item] exists
+		}
+		
+	}
+	
 	
 	eat_food() {
 		if (!this.active) {
