@@ -21,20 +21,7 @@ new Vue({
 			cl: null,	// Current locale, to supercede cll & cvl
 			cll: null,	// Currently loading locale
 			cvl: null,	// Current visible locale
-			day: 1,
-			names: {
-				people: {
-					m: [
-						'Joseph',
-						'Joe',
-						'Frank',
-						'Stewart',
-						'Frederick',
-						'Andrew',
-						'The Donk'
-					]
-				}
-			}
+			day: 1
 		}
 	},
 });
