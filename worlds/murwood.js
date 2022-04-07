@@ -45,8 +45,7 @@ export default function create_world() {
 	// Lumber Mills
 	
 	let pioneer_lumberjacks = w.objects[w.next] = new Building(w.cll, 'Lumber Mill', 2, 'Donkbert');
-	pioneer_lumberjacks.inventory['Food'] = {};
-	pioneer_lumberjacks.inventory["Food"]['Oats'] = 2; 
+	pioneer_lumberjacks.inventory["Food"] = 2; 
 	// ↑ For starting Lumber Mill only
 	
 	if (testing_values.lumberjack_overload) {

@@ -5,7 +5,6 @@ let l = function (to_log) {
 }
 
 export default class Person {
-	
 	name
 	locale
 	id
@@ -17,7 +16,6 @@ export default class Person {
 	days_inactive 	= 0
 	
 	building_owned
-	
 	
 	constructor(locale, name = null, building_to_own = null) { 
 		w.objects[w.cl].people.push(this)
@@ -35,15 +33,13 @@ export default class Person {
 		this.id = locale.people.length
 		
 		this.coins = 10
-		this.inventory["Food"] = {}
-		this.inventory["Food"]['Oats'] = 10
+		this.inventory["Food"] = 10
 		this.active = true
 				
 		if (building_to_own) {
 			this.building_owned = building_to_own
 		}
 	}
-	
 	
 	seek_food() {
 		
@@ -61,16 +57,6 @@ export default class Person {
 		// l(this.name+" has "+this.coins+' coins')
 		
 		if (this.building_owned !== undefined && this.building_owned.inventory["Food"] !== undefined) {
-			
-			this.inventory["Food"]['Oats'] += 1
-			this.building_owned.inventory["Food"]['Oats'] -= 1
-			this.coins -= this.building_owned.salary
-			
-			
-			/**************************************
-			
-				TEMPORARILIY DISABLE FOR HARDCODED OATS
-				
 			if (this.building_owned.inventory["Food"] > 0) {
 				
 				// l(this.building_owned.inventory["Food"])
@@ -87,10 +73,8 @@ export default class Person {
 					// l(this.building_owned.inventory["Food"])
 				}
 				
-				return
+				return true
 			}
-			*/
-			
 		}
 		 
 		// 2) Otherwise, go to market with a maximum bid for food
@@ -106,10 +90,6 @@ export default class Person {
 		}
 	}
 	
-	
-	
-	
-	
 	eat_food() {
 		if (!this.active) {
 			return
@@ -123,6 +103,4 @@ export default class Person {
 			this.locale.trend_population -= 1
 		}
 	}
-	
-	
 }
