@@ -31,6 +31,7 @@ export default function import_building_types() {
 		farm.name = 'Farm'
 		farm.graphic = 'farm.png'
 		farm.outputs['Oats'] = 4;
+		farm.food_is_output = true;
 		farm.build_requirements['Lumber'] = 20;
 		farm.resource_multipliers.locale_aspects = {}
 		farm.resource_multipliers.locale_aspects['soil quality'] = 1; // todo: implement this

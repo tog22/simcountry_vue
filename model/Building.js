@@ -45,16 +45,18 @@ export default class Building {
 		
 		this.pay_people()
 		
-		/********************
-		** RESOURCES CHECK **
-		********************/
+		let locale = w.objects[this.parent_locale]
+		let type = w.btypes[this.type]
+		
+		/*****************************
+		**  LOCALE RESOURCES CHECK  **
+		*****************************/
 		
 		/* For now, only from the locale's resources. Later, from not-too-far locales (for lumber mills, unless each locale has its own lumber mill (possibly renamed to a woodchopper, which produces 'logs' which a more advanced lumber mill building process into 'lumber'). */
 		
-		// Find locale
-		let locale = w.objects[this.parent_locale];
 		// Find resources to fetch from the locale
-		let resources_to_fetch = w.btypes[this.type].resource_inputs;
+		let resources_to_fetch = type.resource_inputs;
+		
 		// Check if locale has enough of each resource needed
 		let sufficient_resources_check = true;
 		for (var resource_name_index in resources_to_fetch) {
@@ -69,14 +71,14 @@ export default class Building {
 			console.log('insuffic resources')
 		}
 		
-		/*****************
-		** INPUTS CHECK **
-		******************/
+		/*******************
+		**  INPUTS CHECK  **
+		*******************/
 		
 		/* For now, from other buildings in the locale. Later, from not-too-far locales, or profitably close locales, after accounting for transport costs.This inter-locale trade could be conducted via a special type of buildings, namely trading posts/ports, which record local demand then fetch it. */
 		
-		let inputs_to_fetch = w.btypes[this.type].inputs;
-		let outputs_to_make = w.btypes[this.type].outputs;
+		let inputs_to_fetch = type.inputs;
+		let outputs_to_make = type.outputs;
 		
 		// Check if locale has enough of each input needed
 		let sufficient_inputs_check = true;
@@ -111,7 +113,7 @@ export default class Building {
 					lo(w.items[output_name])
 					if (w.items[output_name].type === 'food') {
 						
-						if ( has(this.inventory, 'food') ) {
+						if ( !has(this.inventory, 'food') ) {
 							
 							this.inventory['food'] = {}
 							this.inventory['food'][output_name] += outputs_to_make[output_name];

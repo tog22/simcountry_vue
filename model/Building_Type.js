@@ -1,10 +1,15 @@
 export default class Building_Type {
+	
 	name
 	lc_name
+	
 	outputs = []
 	inputs = []
 	resource_inputs = []
 	resource_multipliers = []
+	
+	food_is_output = false
+	
 	build_requirements = []
 	lc_name
 	cap_name
