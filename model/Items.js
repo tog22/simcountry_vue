@@ -54,7 +54,7 @@ export default class Item {
 		
 		switch (type) {
 			case 'food':
-				index.food[name] = true
+				index.foods[name] = true
 				break;
 			default:
 				break;

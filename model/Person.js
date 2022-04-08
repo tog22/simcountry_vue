@@ -1,10 +1,6 @@
 import w from '@/model/World'
 import index from '@/worlds/index'
 
-let l = function (to_log) { 
-	console.log(to_log) 
-}
-
 export default class Person {
 	name
 	locale
@@ -19,6 +15,8 @@ export default class Person {
 	building_owned
 	
 	constructor(locale, name = null, building_to_own = null) { 
+		//******TEMP******
+		index.foods.add('Food')
 		w.objects[w.cl].people.push(this)
 		
 		if (name) {
@@ -57,6 +55,48 @@ export default class Person {
 		
 		// l(this.name+" has "+this.coins+' coins')
 		
+		this.search_inventory_for_food(this.building_owned.inventory)
+		
+		if (this.building_owned !== undefined) {
+			
+			let own_b_inventory = this.building_owned.inventory
+			
+			for (let item in own_b_inventory) {
+				
+				if
+				(
+					index.foods.has(item) 
+					&& 
+					own_b_inventory[item] > 0
+				) {
+					
+					// 👤 gets the food & forgoes their salary
+					
+					l(this.name+" eats food from his building's stockpile")
+					l('Before own_b_inventory[item] - '+own_b_inventory[item])
+					
+					own_b_inventory[item] -=1
+					this.inventory[item] += 1 
+					this.building_owned.coins += this.building_owned.salary
+					this.coins -= this.building_owned.salary
+					
+					
+					l('After own_b_inventory[item] - '+own_b_inventory[item])
+					l(this)
+					
+					
+					
+					return true 
+				}
+				
+			}
+			
+		}
+		
+		/******
+		** 	old version of (1)
+		**
+		
 		if (this.building_owned !== undefined && this.building_owned.inventory["Food"] !== undefined) {
 			if (this.building_owned.inventory["Food"] > 0) {
 				
@@ -77,6 +117,8 @@ export default class Person {
 				return true
 			}
 		}
+		
+		*************/
 		 
 		// 2) Otherwise, go to market with a maximum bid for food
 		if (this.name === 'Donkbert') {
@@ -93,11 +135,11 @@ export default class Person {
 	
 	
 	search_inventory_for_food(inventory) {
-		
 		for (var item in inventory) {
-			// check if index.food[item] exists
+			if (index.foods.has(item)) {
+				return true
+			}
 		}
-		
 	}
 	
 	
@@ -115,3 +157,9 @@ export default class Person {
 		}
 	}
 }
+
+let l = function (to_log) { 
+	console.log(to_log) 
+}
+
+let lo = l

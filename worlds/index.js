@@ -12,7 +12,7 @@ var index = {
 			]
 		}
 	},
-	foods:		{}
+	foods:		new Set()
 }
 
 export default index
