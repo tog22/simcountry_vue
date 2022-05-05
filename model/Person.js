@@ -55,8 +55,6 @@ export default class Person {
 		
 		// l(this.name+" has "+this.coins+' coins')
 		
-		this.search_inventory_for_food(this.building_owned.inventory)
-		
 		if (this.building_owned !== undefined) {
 			
 			let own_b_inventory = this.building_owned.inventory
@@ -68,7 +66,8 @@ export default class Person {
 					index.foods.has(item) 
 					&& 
 					own_b_inventory[item] > 0
-				) {
+				)
+				{
 					
 					// 👤 gets the food & forgoes their salary
 					
@@ -130,15 +129,6 @@ export default class Person {
 		if (this.name === 'Donkbert') {
 			// l(this.name+' has '+this.coins+' coins, so bids this');
 			// l(this.locale.bids["Food"][3])
-		}
-	}
-	
-	
-	search_inventory_for_food(inventory) {
-		for (var item in inventory) {
-			if (index.foods.has(item)) {
-				return true
-			}
 		}
 	}
 	
