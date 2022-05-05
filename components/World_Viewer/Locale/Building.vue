@@ -37,6 +37,7 @@
 					prompt:		'A click on a building in world viewer',
 				}
 				bus.$emit('iz', event)
+				alert('bus iz event emitted ... should get an alert next saying its caught')
 			}
 		},
 		computed: {

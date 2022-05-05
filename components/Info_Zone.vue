@@ -25,6 +25,7 @@
 		},
 		created (){
 			bus.$on('iz', (e) => {
+				alert ('bus iz event caught')
 				switch(e.do) {
 					case 'Show building':
 						if (!this.open_buildings.includes(e.id)) {
