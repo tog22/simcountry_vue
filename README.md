@@ -26,6 +26,7 @@ You'll need to recreate these files.
 ````
 let testing_values = {
 	start_paused:			false,
+	day_speed:				2000,
 	lumberjack_overload:	true
 }
 

@@ -4,14 +4,15 @@
 
 import w from '../model/World.js'
 import ds from '../aspects/store.js'
+import testing_values from '@/worlds/testing_values'
 
 export default function start_loop() {
-	setTimeout(loop, 2000);
+	setTimeout(loop, testing_values.day_speed);
 }
 
 export function loop() {
 	update();
-	setTimeout(loop, 500);
+	setTimeout(loop, testing_values.day_speed);
 }
 
 function update() {
