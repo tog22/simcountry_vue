@@ -50,7 +50,27 @@ export default class Person {
 			return
 		}
 		
-		// 1) Try getting food from the building they own
+		this.get_food_from_own_building()
+		 
+		// 2) Otherwise, go to market with a maximum bid for food'
+		/* 🪵
+		if (this.name === 'Donkbert') {
+			// l('Donkbert = ')
+			// l(this)
+			// l(this.coins)
+		}
+		🪵 */
+		this.locale.seek('Food', 1, this.coins, this)
+		/* 🪵
+		if (this.name === 'Donkbert') {
+			// l(this.name+' has '+this.coins+' coins, so bids this');
+			// l(this.locale.bids["Food"][3])
+		}
+		🪵 */
+	}
+	
+	
+	get_food_from_own_building() {
 		// 		(TODO - work out some adjustment, like seeing if market price is cheaper, and somehow letting this drive up agricultural wages and thus prices()
 		
 		// l(this.name+" has "+this.coins+' coins')
@@ -118,18 +138,6 @@ export default class Person {
 		}
 		
 		*************/
-		 
-		// 2) Otherwise, go to market with a maximum bid for food
-		if (this.name === 'Donkbert') {
-			// l('Donkbert = ')
-			// l(this)
-			// l(this.coins)
-		}
-		this.locale.seek('Food', 1, this.coins, this)
-		if (this.name === 'Donkbert') {
-			// l(this.name+' has '+this.coins+' coins, so bids this');
-			// l(this.locale.bids["Food"][3])
-		}
 	}
 	
 	
