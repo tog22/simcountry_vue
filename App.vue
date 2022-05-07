@@ -8,6 +8,8 @@
 	import '@/graphics/ui.css';
 	import '@/graphics/map.css';
 	
+	import ui from './aspects/ui'
+	
 	import w from '@/model/World'
 	
 	import World_Viewer from './components/World_Viewer.vue'
@@ -21,17 +23,22 @@
 	
 	import create_world from '@/worlds/murwood'
 	
-	
 	export default {
 		name: 'App',
 		components: {
 			World_Viewer
 		},
 		created() {
-			
 			create_world()
-			
-		}
+			window.addEventListener('keyup', ui.keypress_handler);
+			/*
+			let example_key_action2 = function() { alert('Example')}
+			ui.add_key('a', example_key_action2)
+			*/
+		},
+		destroyed() {
+			window.removeEventListener('keyup', ui.keypress_handler);
+		},
 	}
 </script>
 
